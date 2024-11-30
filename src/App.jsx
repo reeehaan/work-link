@@ -14,6 +14,7 @@ const [userType, setUserType] = useState('freelancer');
     <>
     <button onClick={() => setUserType('freelancer')}>Freelancer</button>
     <button onClick={() => setUserType('client')}>Client</button>
+    <button onClick={() => setUserType('client')}>Client</button>
     <Navbar userType={userType}/>
     <Router>
       <Routes>
