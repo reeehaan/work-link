@@ -1,9 +1,15 @@
 
-import React from 'react';
+import  { useState } from 'react';
 import RoleCard from './RoleCard';
+import ActionButton from './ActionButton';
 import './Signup.css';
 
-export default function RoleSelection({ selectedRole, handleRoleChange }) {
+
+
+export default function RoleSelection() {
+  
+  const [selectedRole ,setSelectedRole] = useState();
+  
   return (
     <div className="role-selection">
       <RoleCard
@@ -11,15 +17,17 @@ export default function RoleSelection({ selectedRole, handleRoleChange }) {
         icon="📁"
         description="I’m a client, hiring for a project"
         isSelected={selectedRole === 'client'}
-        onClick={handleRoleChange}
+        onClick={() => setSelectedRole('client')}
       />
       <RoleCard
         role="freelancer"
         icon="💻"
         description="I’m a freelancer, looking for work"
         isSelected={selectedRole === 'freelancer'}
-        onClick={handleRoleChange}
+        onClick={() => setSelectedRole('freelancer')}
       />
+
+      <ActionButton selectedRole={selectedRole} />
     </div>
   );
 }

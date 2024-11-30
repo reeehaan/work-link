@@ -1,27 +1,37 @@
 import './App.css'
-import { useState } from 'react';
+import { Children, useState } from 'react';
 
 import Home from './Pages/Home/Home';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
-
+import RoleSelection from './Pages/Sign-up/RoleSelection';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
 const [userType, setUserType] = useState('freelancer');
-
+const Layout = ({children}) =>{
+  return(
+  <>
+  <Navbar userType={userType}/>
+  {children}
+  <Footer/>
+  </>
+  ); 
+  
+}
   return(
     <>
     <button onClick={() => setUserType('freelancer')}>Freelancer</button>
     <button onClick={() => setUserType('client')}>Client</button>
-    <button onClick={() => setUserType('client')}>Client</button>
-    <Navbar userType={userType}/>
+    
+    
     <Router>
       <Routes>
-        <Route path="/home" element={<Home/>}/>
+        <Route path="/" element={<Layout><Home/></Layout>}/>
+        <Route path="/sign-up"element={<RoleSelection/>}> </Route>
       </Routes>
     </Router>
-    <Footer/>
+    
     </>
   );
 }
