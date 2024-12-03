@@ -1,7 +1,9 @@
-export default function ActionButton({ selectedRole }) {
+
+
+export default function ActionButton({ selectedRole, onClick }) {
   return (
     <div className="action">
-      <button className="action-button">
+      <button className="action-button" onClick={onClick} >
         {selectedRole === 'client' ? 'Apply as a Client' : 'Apply as a Freelancer'}
       </button>
       <p>

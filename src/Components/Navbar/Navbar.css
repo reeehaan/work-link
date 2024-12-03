@@ -27,6 +27,7 @@
   .navbar-search {
     border: 1px solid #ccc;
     padding: 5px 10px;
+    width: 20%;
   }
   
   .navbar-profile {

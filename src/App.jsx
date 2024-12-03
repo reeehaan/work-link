@@ -5,6 +5,7 @@ import Home from './Pages/Home/Home';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import RoleSelection from './Pages/Sign-up/RoleSelection';
+import SignupForm from './Pages/Sign-up/SignupForm';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -29,6 +30,7 @@ const Layout = ({children}) =>{
       <Routes>
         <Route path="/" element={<Layout><Home/></Layout>}/>
         <Route path="/sign-up"element={<RoleSelection/>}> </Route>
+        <Route path="/signup-form"element={<SignupForm/>}> </Route>
       </Routes>
     </Router>
     

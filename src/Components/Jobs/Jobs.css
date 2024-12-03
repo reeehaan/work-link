@@ -4,9 +4,9 @@
   }
   
   .jobs-list {
-    display: block;
+    display: flexbox;
     justify-content: center;
-    text-align: center;
+    text-align: left;
     gap: 20px;
   }
   
