@@ -10,7 +10,7 @@ function SignupForm() {
   
   useEffect(() => {
     if (!selectedRole) {
-      navigate('/sign-up');
+      navigate('/signup');
     }
   }, [selectedRole, navigate]);
 

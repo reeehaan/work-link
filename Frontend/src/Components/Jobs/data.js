@@ -4,6 +4,7 @@ const Data = [
       title: "Frontend Developer",
       description: "Responsible for developing user-facing applications.",
       skills: ["HTML5", "CSS", "Node.js"],
+    
     },
     {
       id: 2,

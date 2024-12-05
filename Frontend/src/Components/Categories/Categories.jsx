@@ -8,6 +8,8 @@ const categories = [
   { name: 'Writing', image: 'src/assets/freelancer-page1/writing.png' },
 ];
 
+
+
 const Categories = () => {
   return (
     <section className="categories">
