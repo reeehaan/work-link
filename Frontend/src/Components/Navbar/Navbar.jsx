@@ -30,7 +30,7 @@ export default function  Navbar({userType}) {
       <div className="navbar-logo"><a href="/home">Work<span>Link</span></a></div>
       {userType === 'freelancer' ? freelancer() : userType === 'client' ? client() : null}
       <input type="text" className="navbar-search" placeholder="Search" />
-      <div className="navbar-profile"></div>
+      
     </nav>
   );
 };

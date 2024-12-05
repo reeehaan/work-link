@@ -8,6 +8,7 @@ import Footer from './Components/Footer/Footer';
 import RoleSelection from './Pages/Sign-up/RoleSelection';
 import SignupForm from './Pages/Sign-up/SignupForm';
 import LoginForm from './Pages/Login/LoginForm';
+import MainContent from './Pages/Home/MainContent';
 
 function App() {
 const [userType, setUserType] = useState('freelancer');
@@ -33,6 +34,7 @@ const Layout = ({children}) =>{
         <Route path="/signup"element={<RoleSelection/>}> </Route>
         <Route path="/signup-form"element={<SignupForm/>}> </Route>
         <Route path="/login-form"element={<LoginForm/>}> </Route>
+        <Route path="/home"element={<MainContent/>}> </Route>
       </Routes>
     </Router>
     
