@@ -31,7 +31,7 @@ function SignupForm() {
         <button type="submit" className="signup-button">Sign up</button>
       </form>
       <p className="login-link">
-        Already have an account? <a href="#">Log in</a>
+        Already have an account? <a href="login-form">Log in</a>
       </p>
     </div>
   );
