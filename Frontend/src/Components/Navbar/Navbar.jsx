@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Button, TextField, Box, Typography, Menu, MenuItem } from '@mui/material';
+import { AppBar, Toolbar, Button, TextField, Box, Typography, Menu, MenuItem, Avatar, IconButton } from '@mui/material';
 import { ArrowDropDown } from '@mui/icons-material';
 
 export default function Navbar({ userType }) {
@@ -8,12 +8,14 @@ export default function Navbar({ userType }) {
   const [anchorElPostJob, setAnchorElPostJob] = useState(null);
   const [anchorElHires, setAnchorElHires] = useState(null);
   const [anchorElReport, setAnchorElReport] = useState(null);
+  const [anchorElProfile, setAnchorElProfile] = useState(null); // For profile dropdown
 
   const openWork = Boolean(anchorElWork);
   const openDeliver = Boolean(anchorElDeliver);
   const openPostJob = Boolean(anchorElPostJob);
   const openHires = Boolean(anchorElHires);
   const openReport = Boolean(anchorElReport);
+  const openProfile = Boolean(anchorElProfile);
 
   const handleMenuClick = (setter) => (event) => {
     setter(event.currentTarget);
@@ -25,7 +27,6 @@ export default function Navbar({ userType }) {
 
   const freelancerLinks = () => (
     <Box sx={{ display: 'flex', gap: 2 }}>
-      {/* Find Work Dropdown */}
       <div>
         <Button color="inherit" onClick={handleMenuClick(setAnchorElWork)} endIcon={<ArrowDropDown />}>
           Find Work
@@ -34,14 +35,8 @@ export default function Navbar({ userType }) {
           anchorEl={anchorElWork}
           open={openWork}
           onClose={handleMenuClose(setAnchorElWork)}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
           <MenuItem onClick={handleMenuClose(setAnchorElWork)} href="/findFreelancer">Find Work</MenuItem>
           <MenuItem onClick={handleMenuClose(setAnchorElWork)} href="/savedJobs">Saved Jobs</MenuItem>
@@ -49,7 +44,6 @@ export default function Navbar({ userType }) {
         </Menu>
       </div>
 
-      {/* Deliver Work Dropdown */}
       <div>
         <Button color="inherit" onClick={handleMenuClick(setAnchorElDeliver)} endIcon={<ArrowDropDown />}>
           Deliver Work
@@ -58,14 +52,8 @@ export default function Navbar({ userType }) {
           anchorEl={anchorElDeliver}
           open={openDeliver}
           onClose={handleMenuClose(setAnchorElDeliver)}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
           <MenuItem onClick={handleMenuClose(setAnchorElDeliver)} href="/activeContracts">Active Contracts</MenuItem>
         </Menu>
@@ -78,7 +66,6 @@ export default function Navbar({ userType }) {
 
   const clientLinks = () => (
     <Box sx={{ display: 'flex', gap: 2 }}>
-      {/* Post Job Dropdown */}
       <div>
         <Button color="inherit" onClick={handleMenuClick(setAnchorElPostJob)} endIcon={<ArrowDropDown />}>
           Post Job
@@ -87,21 +74,14 @@ export default function Navbar({ userType }) {
           anchorEl={anchorElPostJob}
           open={openPostJob}
           onClose={handleMenuClose(setAnchorElPostJob)}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
           <MenuItem onClick={handleMenuClose(setAnchorElPostJob)} href="/postjob">Post a Job</MenuItem>
           <MenuItem onClick={handleMenuClose(setAnchorElPostJob)} href="/dashboard">Dashboard</MenuItem>
         </Menu>
       </div>
 
-      {/* Your Hires Button */}
       <div>
         <Button color="inherit" onClick={handleMenuClick(setAnchorElHires)} endIcon={<ArrowDropDown />}>
           Your Hires
@@ -110,20 +90,13 @@ export default function Navbar({ userType }) {
           anchorEl={anchorElHires}
           open={openHires}
           onClose={handleMenuClose(setAnchorElHires)}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
           <MenuItem onClick={handleMenuClose(setAnchorElHires)} href="/yourhires">Your Hires</MenuItem>
         </Menu>
       </div>
 
-      {/* Report Dropdown */}
       <div>
         <Button color="inherit" onClick={handleMenuClick(setAnchorElReport)} endIcon={<ArrowDropDown />}>
           Report
@@ -132,14 +105,8 @@ export default function Navbar({ userType }) {
           anchorEl={anchorElReport}
           open={openReport}
           onClose={handleMenuClose(setAnchorElReport)}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
           <MenuItem onClick={handleMenuClose(setAnchorElReport)} href="/weeklySummary">Weekly Summary</MenuItem>
           <MenuItem onClick={handleMenuClose(setAnchorElReport)} href="/transactionHistory">Transaction History</MenuItem>
@@ -159,16 +126,31 @@ export default function Navbar({ userType }) {
           </a>
         </Typography>
 
-        {/* Display different links based on userType */}
         {userType === 'freelancer' ? freelancerLinks() : userType === 'client' ? clientLinks() : null}
 
-        {/* Search field */}
         <TextField
           variant="outlined"
           size="small"
-          sx={{ backgroundColor: 'white', borderRadius: '4px' }}
+          sx={{ backgroundColor: 'white', borderRadius: '4px', marginRight: 2 }}
           placeholder="Search"
         />
+
+        <div>
+          <IconButton onClick={handleMenuClick(setAnchorElProfile)}>
+            <Avatar alt="" src="/profile.jpg" />
+          </IconButton>
+          <Menu
+            anchorEl={anchorElProfile}
+            open={openProfile}
+            onClose={handleMenuClose(setAnchorElProfile)}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          >
+            <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/profile">View Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/editProfile">Edit Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/logout">Logout</MenuItem>
+          </Menu>
+        </div>
       </Toolbar>
     </AppBar>
   );

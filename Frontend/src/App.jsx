@@ -25,20 +25,20 @@ const customTheme = createTheme({
   palette: {
     primary: {
       main: '#ffffff', 
-      contrastText: '#00b3ff', // Text color on primary buttons, etc.
+      contrastText: '#00b3ff', // Text color on primary buttons
       dark: '#00b3ff', // Primary color 2
     },
     text: {
       primary: '#000000', // Main text color: Black
     },
     background: {
-      default: '#f5f5f5', // Optional, light gray for default backgrounds
+      default: '#f5f5f5', 
     },
   },
   typography: {
     fontFamily: 'Arial, sans-serif', // Preferred font
     allVariants: {
-      color: '#000000', // Ensure all text uses black by default
+      color: '#000000', 
     },
   },
 });
