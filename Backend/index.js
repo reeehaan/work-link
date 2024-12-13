@@ -10,7 +10,7 @@ require("./Database/mongodb.js");
 //import routes
 const users = require("./Routes/user-route");
 
-// const message = require("./Routes/message");
+
 //middleware
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));

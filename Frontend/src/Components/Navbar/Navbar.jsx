@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Button, TextField, Box, Typography, Menu, MenuItem, Avatar, IconButton } from '@mui/material';
 import { ArrowDropDown } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar({ userType }) {
+  const navigate = useNavigate();
+
   const [anchorElWork, setAnchorElWork] = useState(null);
   const [anchorElDeliver, setAnchorElDeliver] = useState(null);
   const [anchorElPostJob, setAnchorElPostJob] = useState(null);
@@ -28,7 +31,7 @@ export default function Navbar({ userType }) {
   const freelancerLinks = () => (
     <Box sx={{ display: 'flex', gap: 2 }}>
       <div>
-        <Button color="inherit" onClick={handleMenuClick(setAnchorElWork)} endIcon={<ArrowDropDown />}>
+        <Button color="inherit" onClick={handleMenuClick(setAnchorElWork)} endIcon={<ArrowDropDown />} sx={{ color: '#007bff' }}>
           Find Work
         </Button>
         <Menu
@@ -45,7 +48,7 @@ export default function Navbar({ userType }) {
       </div>
 
       <div>
-        <Button color="inherit" onClick={handleMenuClick(setAnchorElDeliver)} endIcon={<ArrowDropDown />}>
+        <Button color="inherit" onClick={handleMenuClick(setAnchorElDeliver)} endIcon={<ArrowDropDown />} sx={{ color: '#007bff' }}>
           Deliver Work
         </Button>
         <Menu
@@ -59,15 +62,15 @@ export default function Navbar({ userType }) {
         </Menu>
       </div>
 
-      <Button color="inherit" href="/refund">Refund Policy</Button>
-      <Button color="inherit" href="/messages">Messages</Button>
+      <Button color="inherit" href="/refund" sx={{ color: '#007bff' }}>Refund Policy</Button>
+      <Button color="inherit" href="/messages" sx={{ color: '#007bff' }}>Messages</Button>
     </Box>
   );
 
   const clientLinks = () => (
     <Box sx={{ display: 'flex', gap: 2 }}>
       <div>
-        <Button color="inherit" onClick={handleMenuClick(setAnchorElPostJob)} endIcon={<ArrowDropDown />}>
+        <Button color="inherit" onClick={handleMenuClick(setAnchorElPostJob)} endIcon={<ArrowDropDown />} sx={{ color: '#007bff' }}>
           Post Job
         </Button>
         <Menu
@@ -83,7 +86,7 @@ export default function Navbar({ userType }) {
       </div>
 
       <div>
-        <Button color="inherit" onClick={handleMenuClick(setAnchorElHires)} endIcon={<ArrowDropDown />}>
+        <Button color="inherit" onClick={handleMenuClick(setAnchorElHires)} endIcon={<ArrowDropDown />} sx={{ color: '#007bff' }}>
           Your Hires
         </Button>
         <Menu
@@ -98,7 +101,7 @@ export default function Navbar({ userType }) {
       </div>
 
       <div>
-        <Button color="inherit" onClick={handleMenuClick(setAnchorElReport)} endIcon={<ArrowDropDown />}>
+        <Button color="inherit" onClick={handleMenuClick(setAnchorElReport)} endIcon={<ArrowDropDown />} sx={{ color: '#007bff' }}>
           Report
         </Button>
         <Menu
@@ -113,15 +116,20 @@ export default function Navbar({ userType }) {
         </Menu>
       </div>
 
-      <Button color="inherit" href="/messages">Messages</Button>
+      <Button color="inherit" href="/messages" sx={{ color: '#007bff' }}>Messages</Button>
     </Box>
   );
 
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    navigate('/')
+  };
+
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{ backgroundColor: '#ffffff', color: '#000000' }}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          <a href="/home" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <a href="/home" style={{ textDecoration: 'none', color: '#000000' }}>
             Work<span style={{ color: '#00b3ff' }}>Link</span>
           </a>
         </Typography>
@@ -148,7 +156,7 @@ export default function Navbar({ userType }) {
           >
             <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/profile">View Profile</MenuItem>
             <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/editProfile">Edit Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/logout">Logout</MenuItem>
+            <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
           </Menu>
         </div>
       </Toolbar>

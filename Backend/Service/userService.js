@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../Models/user");
 const bcrypt = require("bcryptjs");
-//const sendEmail = require("./nodemailer");
+
 
 
 const register = async (req, res) => {
@@ -26,7 +26,7 @@ const register = async (req, res) => {
     lastName: req.body.lastName,
     email: req.body.email,
     password: hashPassword,
-    role: req.body.selectedRole
+    role: req.body.selectedRole,
   });
   await user.save();
   return res.status(202).send("Successful")
@@ -34,10 +34,10 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
-  if (!user) return res.status(400).send("Email Dosn't exists");
+  if (!user) return res.status(400).send({error: "Invalid Email or Password"});
   //compare the password
   const match = await bcrypt.compare(req.body.password, user.password);
-  if (!match) return res.status(400).send("Invalid Password");
+  if (!match) return res.status(400).send({error: "Invalid Email or Password"});
 
   //jwtwebtoken
   //create and assign a token
@@ -45,14 +45,15 @@ const login = async (req, res) => {
     { 
         _id: user._id, 
         email: user.email,
-        role: user.role
+        role: user.role,
+        exp: Math.floor(Date.now()/1000 + (1 * 24 * 60 * 60))
     },
     process.env.TOKEN_SECRET
   );
   res.header("auth-token", token);
   res.json(
         {
-        Access_Token: token,
+          token,
         email: user.email,
         role: user.role
         }
