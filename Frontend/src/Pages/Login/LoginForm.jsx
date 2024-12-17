@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -112,7 +111,7 @@ const LoginForm = () => {
 
   return (
     <Container maxWidth="sm">
-      <Paper elevation={3} sx={{ p: 4, mt: 4, boxShadow: 'none' }}>
+      <Paper elevation={3} sx={{ p: 4, mt: 5, boxShadow: 'none' }}>
         <Typography variant="h4" component="h1" gutterBottom>
           Login
         </Typography>

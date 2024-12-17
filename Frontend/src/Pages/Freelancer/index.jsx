@@ -1,4 +1,3 @@
-import React from 'react'
 import Categories from '../../Components/Categories/Categories'
 import Jobs from '../../Components/Jobs/Jobs'
 import Data from '../../Components/Jobs/Data'; 

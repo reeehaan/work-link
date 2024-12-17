@@ -7,7 +7,7 @@ export default function ActionButton({ selectedRole, onClick }) {
         {selectedRole === 'client' ? 'Apply as a Client' : 'Apply as a Freelancer'}
       </button>
       <p>
-        Already have an account? <a href="/login">Log In</a>
+        Already have an account? <a href="/login-form">Log In</a>
       </p>
     </div>
   );

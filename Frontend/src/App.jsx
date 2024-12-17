@@ -1,5 +1,4 @@
 import './App.css'
-import { children, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
@@ -12,6 +11,9 @@ import MainContent from './Pages/Home/MainContent';
 import Client from './Pages/Client';
 import Freelancer from './Pages/Freelancer';
 import ProtectedRoute from './common/ProtectedRoute';
+import FreelancerProfile from './Components/Profile/FreelancerProfile';
+import ProjectTitle from './Components/PostProject/ProjectTitle';
+import ProjectSkill from './Components/PostProject/ProjectSkill';
 
 
 
@@ -95,8 +97,6 @@ const Layout = ({role}) =>{
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
     
-    {/* <button onClick={() => setUserType('freelancer')}>Freelancer</button>
-    <button onClick={() => setUserType('client')}>Client</button> */}
     
     
     <Router>
@@ -105,9 +105,13 @@ const Layout = ({role}) =>{
         <Route path="/signup"element={<RoleSelection/>}> </Route>
         <Route path="/signup-form"element={<SignupForm/>}> </Route>
         <Route path="/login-form"element={<LoginForm/>}> </Route>
+        <Route path="/freelancer-profile"element={<FreelancerProfile/>}> </Route>
         
         
-        
+        <Route path="/project-title"element={<ProjectTitle/>}> </Route>
+        <Route path="/project-skill"element={<ProjectSkill/>}> </Route>
+
+
 
         {/* Protected Route Freelancer*/}
         <Route element={<ProtectedRoute allowedRole="freelancer" />}>

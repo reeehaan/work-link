@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AppBar, Toolbar, Button, TextField, Box, Typography, Menu, MenuItem, Avatar, IconButton } from '@mui/material';
 import { ArrowDropDown } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -119,7 +119,7 @@ export default function Navbar({ userType }) {
       <Button color="inherit" href="/messages" sx={{ color: '#007bff' }}>Messages</Button>
     </Box>
   );
-
+//logout 
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     navigate('/')
@@ -154,8 +154,7 @@ export default function Navbar({ userType }) {
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           >
-            <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/profile">View Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/editProfile">Edit Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/">Profile</MenuItem>
             <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
           </Menu>
         </div>
