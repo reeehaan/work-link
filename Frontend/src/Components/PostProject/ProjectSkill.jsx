@@ -3,21 +3,15 @@ import styles from "./Skill.module.css";
 
 const ProjectSkill = () => {
   const [selectedSkills, setSelectedSkills] = useState([
-    "Web Design",
-    "HTML",
-    "CSS",
-    "PHP",
+    
   ]);
 
   const popularSkills = [
     "WordPress",
-    "WooCommerce",
     "Web Development",
     "JavaScript",
     "HTML5",
-    "WordPress Plugin",
     "Ecommerce Website",
-    "CSS 3",
     "MySQL",
     "jQuery",
     "Website Customization",
@@ -27,7 +21,6 @@ const ProjectSkill = () => {
     "Ecommerce Website Development",
     "Bootstrap",
     "Custom PHP",
-    "Elementor",
     "Gravity Forms",
     "Adobe XD",
   ];
@@ -45,7 +38,7 @@ const ProjectSkill = () => {
   return (
     <div className={styles.container}>
       <div className={styles.leftSection}>
-        <p> Job post</p>
+        <p>post project</p>
         <h2>What are the main skills required for your work?</h2>
       </div>
 

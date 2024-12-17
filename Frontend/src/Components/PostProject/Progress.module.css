@@ -1,0 +1,54 @@
+.container {
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .progressBarContainer {
+    width: 100%;
+    height: 5px;
+    background-color: #e0e0e0;
+    margin-bottom: 20px;
+  }
+  
+  .progressBar {
+    height: 100%;
+    background-color: #00b3ff;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .prevButton {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .nextButton {
+    background-color: #00b3ff;
+    color: white;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  button:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+  }
+  

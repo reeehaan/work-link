@@ -1,0 +1,137 @@
+
+.container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 30px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100vh;
+    flex-wrap: wrap;
+  }
+  
+  
+  .leftSection {
+    flex: 1;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .leftSection p {
+    font-size: 1rem;
+    color: #777;
+  }
+  
+  .leftSection h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  
+  .rightSection {
+    flex: 2;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .segmentation {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .segmentationRadio {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .segmentationRadio label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .segmentationRadio label:hover {
+    border-color: #00b3ff;
+    background-color: #f0f9ff;
+  }
+  
+  .description {
+    font-size: 0.95rem;
+    color: #777;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  
+  .priceInput {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .priceInput label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .priceInput p {
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 15px;
+  }
+  
+  .priceInput input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .priceInput input[type="text"]:focus {
+    border-color: #00b3ff;
+    outline: none;
+  }
+  
+ 
+  .priceInput input[type="text"]:hover {
+    border-color: #bbb;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .leftSection {
+      max-width: 100%;
+      text-align: center;
+    }
+  
+    .rightSection {
+      max-width: 100%;
+    }
+  
+    .priceInput {
+      width: 100%;
+    }
+  }
+  

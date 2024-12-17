@@ -28,6 +28,8 @@ export default function Navbar({ userType }) {
     setter(null);
   };
 
+  
+
   const freelancerLinks = () => (
     <Box sx={{ display: 'flex', gap: 2 }}>
       <div>
@@ -80,7 +82,7 @@ export default function Navbar({ userType }) {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
-          <MenuItem onClick={handleMenuClose(setAnchorElPostJob)} href="/postjob">Post a Job</MenuItem>
+          <MenuItem onClick={handleMenuClose(setAnchorElPostJob)} href="/" >Post a Job</MenuItem>
           <MenuItem onClick={handleMenuClose(setAnchorElPostJob)} href="/dashboard">Dashboard</MenuItem>
         </Menu>
       </div>

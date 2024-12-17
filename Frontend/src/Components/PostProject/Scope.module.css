@@ -1,0 +1,106 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100vh;
+    flex-wrap: wrap;
+  }
+  .leftSection {
+    flex: 1;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .rightSection {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  
+  .segmentation {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .segmentation p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #333;
+    margin: 10px;
+  }
+  
+  .title {
+    font-weight: bold;
+  }
+  
+ 
+  .segmentationRadio label {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .segmentationRadio label:hover {
+    border-color: #00b3ff;
+    background: #f0f9ff;
+  }
+  
+  .radioContent {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .segmentationRadio span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .segmentationRadio p {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0;
+  }
+  
+  
+  .segmentationRadio input[type="radio"] {
+    accent-color: #00b3ff;
+    width: 18px;
+    height: 18px;
+  }
+  
+  
+  .segmentationRadio input[type="radio"]:checked + span {
+    color: #00b3ff;
+    font-weight: 600;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .rightSection {
+      max-width: 100%;
+    }
+  }
+  
