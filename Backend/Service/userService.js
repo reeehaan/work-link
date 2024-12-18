@@ -2,10 +2,11 @@ const jwt = require("jsonwebtoken");
 const User = require("../Models/user");
 const bcrypt = require("bcryptjs");
 
-
+const Client = require("./clientService");
 
 const register = async (req, res) => {
-    if(!req.body.email){
+  try{
+      if(!req.body.email){
         return res.status(400).send("Invalid body");
     }
     //
@@ -19,7 +20,7 @@ const register = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-  
+
   //create a new User
   const user = new User({
     firstName: req.body.firstName,
@@ -28,9 +29,23 @@ const register = async (req, res) => {
     password: hashPassword,
     role: req.body.selectedRole,
   });
-  await user.save();
-  return res.status(202).send("Successful")
+  const savedUser = await user.save();
+
+  if(req.body.selectedRole === "client"){
+    Client.saveUserClient(savedUser._id)
+  }
+  // TODO: create freelancer if role is freelancer
+
+  return res.status(202).send("Successful");
+  }
+  catch(err){
+    console.log("error", err);
+    return res.status(400).send("Invalid body");
+  }
+    
 };
+
+
 
 const login = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });

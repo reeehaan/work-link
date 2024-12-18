@@ -42,7 +42,7 @@ const PostProjectLayout = () => {
                 return <ProjectDescription/>;
             
             default:
-                return <ProjectTitle />;
+                return <ProjectTitle/>;
         }
     };
 

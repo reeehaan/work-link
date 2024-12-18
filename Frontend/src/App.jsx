@@ -126,6 +126,8 @@ const Layout = ({role}) =>{
         <Route path="/project-progress"element={<Progress/>}> </Route>
         <Route path="/post-project-layout"element={<PostProjectLayout/>}> </Route>
 
+        <Route path="/projects"element={<PostProjectLayout/>}> </Route>
+
 
 
 
