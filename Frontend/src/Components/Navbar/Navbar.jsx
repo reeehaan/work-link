@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AppBar, Toolbar, Button, TextField, Box, Typography, Menu, MenuItem, Avatar, IconButton } from '@mui/material';
 import { ArrowDropDown } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function Navbar({ userType }) {
   const navigate = useNavigate();
@@ -164,3 +165,8 @@ export default function Navbar({ userType }) {
     </AppBar>
   );
 }
+
+Navbar.propTypes = {
+  userType: PropTypes.oneOf(['freelancer', 'client']).isRequired,
+};
+

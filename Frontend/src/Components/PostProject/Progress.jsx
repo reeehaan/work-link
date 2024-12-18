@@ -1,34 +1,19 @@
+import PropTypes from "prop-types";
+import styles from "./Progress.module.css";
 
-
-import { useState } from 'react';
-import styles from './Progress.module.css'; 
-
-const Progress = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 5;
-
-  const nextStep = () => {
-    if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
+const Progress = ({ currentStep, totalSteps, nextStep, prevStep }) => {
   const progressPercentage = (currentStep / totalSteps) * 100;
 
   return (
     <div className={styles.container}>
+
       <div className={styles.progressBarContainer}>
         <div
           className={styles.progressBar}
           style={{ width: `${progressPercentage}%` }}
         ></div>
       </div>
+
       
       <div className={styles.buttons}>
         <button
@@ -38,17 +23,19 @@ const Progress = () => {
         >
           Back
         </button>
-        
-        <button
-          className={styles.nextButton}
-          onClick={nextStep}
-        >
-          {currentStep === totalSteps ? 'Finish' : 'Next'}
+
+        <button className={styles.nextButton} onClick={nextStep}>
+          {currentStep === totalSteps ? "Finish" : "Next"}
         </button>
       </div>
     </div>
   );
 };
+Progress.propTypes = {
+  currentStep: PropTypes.number.isRequired, 
+  totalSteps: PropTypes.number.isRequired,  
+  nextStep: PropTypes.func.isRequired,      
+  prevStep: PropTypes.func.isRequired,      
+};
 
 export default Progress;
-

@@ -8,6 +8,7 @@ const ProjectDescription = () => {
 
   const handleChange = (event) => {
     setDescription(event.target.value);
+    console.log(event.target.value);
   };
 
   return (

@@ -14,21 +14,21 @@
   
   .leftSection {
     flex: 1;
-    max-width: 450px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    max-width: 50%;
   }
   
   .leftSection p {
-    font-size: 1rem;
-    color: #777;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #817f7f; 
   }
   
   .leftSection h2 {
-    font-size: 2rem;
+    font-size: 36px;
     font-weight: 600;
-    color: #333;
+    margin-bottom: 15px;
+    color: #000; 
+    text-align: left;
   }
   
   

@@ -1,6 +1,15 @@
+import { useState } from "react";
 import styles from "./Budget.module.css";
 
 const ProjectBudget = () => {
+
+  const [budget, setBudget] = useState();
+
+  const getBudget= (event)=> {
+    setBudget(event.target.value);
+    console.log(event.target.value);
+    
+  }
   return (
     <div className={styles.container}>
       <div className={styles.leftSection}>
@@ -22,7 +31,7 @@ const ProjectBudget = () => {
                 <h4>What is the best cost estimate for your project?</h4>
                 <p> You can negotiate this cost and create milestones when you chat with your freelancer.</p>
 
-                <input type="text" placeholder="price" id="input-fixed-price"/>
+                <input type="text" placeholder="price" id="input-fixed-price" value={budget} onChange={getBudget}/>
               </div>
 
 

@@ -1,43 +1,46 @@
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    gap: 20px;
-    padding: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 100vh;
-    flex-wrap: wrap;
-  }
-  .leftSection {
-    flex: 1;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px;
+  gap: 50px;
+}
+
+.leftSection {
+  flex: 1;
+  max-width: 50%;
+}
+
+.rightSection {
+  flex: 1;
+  max-width: 50%;
+}
+
+.segmentation {
+  margin-bottom: 30px; 
+}
+
+.segmentation h4 {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.segmentationRadio {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px; 
+}
+
+
+
+.segmentationRadio p {
+  margin: 5px 0 15px 28px; 
+  color: #555;
+  font-size: 14px;
+}
   
-  .rightSection {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 20px;
-  }
   
-  
-  .segmentation {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .segmentation p {
-    font-size: 1.1rem;
-    font-weight: 300;
-    color: #333;
-    margin: 10px;
-  }
   
   .title {
     font-weight: bold;
@@ -51,7 +54,7 @@
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 10px 15px;
+    padding: 10px 5px;
     cursor: pointer;
     transition: all 0.3s ease;
   }

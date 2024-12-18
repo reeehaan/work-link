@@ -8,12 +8,16 @@ const ProjectScope = () => {
 
   const handleProjectTypeChange = (event) => {
     setProjectType(event.target.value);
+    console.log(event.target.value);
+    
   }
   const handleProjectDurationChange = (event) => {
     setProjectDuration(event.target.value);
+    console.log(event.target.value);
   }
   const handleExperienceLevelChange= (event) => {
     setExperienceLevel(event.target.value);
+    console.log(event.target.value);
   }
 
 
@@ -75,8 +79,8 @@ const ProjectScope = () => {
                 type="radio" 
                 id="more-than-6-months" 
                 name="projectDuration" 
-                value="more than 6 months"
-                checked={projectDuration=== "more than 6 months"}
+                value="More than 6 months"
+                checked={projectDuration=== "More than 6 months"}
                 onChange={handleProjectDurationChange}/>
                 <span>More than 6 months</span>
 
