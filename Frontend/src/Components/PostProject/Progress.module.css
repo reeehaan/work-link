@@ -43,7 +43,10 @@ button {
   background-color: #f0f0f0;
   color: #333;
 }
-
+.cancelButton{
+  background-color: #cb2424;
+  color: white;
+}
 .nextButton {
   background-color: #00b3ff;
   color: white;

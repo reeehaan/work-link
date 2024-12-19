@@ -12,6 +12,10 @@
   max-width: 50%;
 }
 
+.leftSection h2{
+  font-size: 36px;
+}
+
 .rightSection {
   flex: 1;
   max-width: 50%;

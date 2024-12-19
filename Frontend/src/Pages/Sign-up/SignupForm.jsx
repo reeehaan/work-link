@@ -108,79 +108,88 @@ function SignupForm() {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Paper elevation={3} sx={{ p: 4, mt: 4 , boxShadow: 'none'} }>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Sign up as {selectedRole}
-        </Typography>
-        
-        <Typography variant="body2" color="text.primary" sx={{ mb: 3 }}>
-          By signing up, you agree to the{' '}
-          <Link href="#" underline="hover" >Terms of use</Link> and{' '}
-          <Link href="#" underline="hover" >Privacy Policy</Link>.
-        </Typography>
-
-        <Box component="form" onSubmit={handleSubmit} noValidate>
-          <Stack spacing={2}>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <TextField
-                fullWidth
-                label="First Name"
-                value={form.firstName}
-                onChange={handleChange('firstName')}
-                error={!!errors.firstName}
-                helperText={errors.firstName}
-              />
-              <TextField
-                fullWidth
-                label="Last Name"
-                value={form.lastName}
-                onChange={handleChange('lastName')}
-                error={!!errors.lastName}
-                helperText={errors.lastName}
-              />
-            </Box>
-            
+    <Container
+    maxWidth="sm"
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh', // Full viewport height
+    }}
+  >
+    <Paper elevation={3} sx={{ p: 4, boxShadow: 'none' }}>
+      <Typography variant="h4" component="h1" gutterBottom>
+        Sign up as {selectedRole}
+      </Typography>
+      
+      <Typography variant="body2" color="text.primary" sx={{ mb: 3 }}>
+        By signing up, you agree to the{' '}
+        <Link href="#" underline="hover">Terms of use</Link> and{' '}
+        <Link href="#" underline="hover">Privacy Policy</Link>.
+      </Typography>
+  
+      <Box component="form" onSubmit={handleSubmit} noValidate>
+        <Stack spacing={2}>
+          <Box sx={{ display: 'flex', gap: 2 }}>
             <TextField
               fullWidth
-              label="Email"
-              type="email"
-              value={form.email}
-              onChange={handleChange('email')}
-              error={!!errors.email}
-              helperText={errors.email}
+              label="First Name"
+              value={form.firstName}
+              onChange={handleChange('firstName')}
+              error={!!errors.firstName}
+              helperText={errors.firstName}
             />
-            
             <TextField
               fullWidth
-              label="Password"
-              type="password"
-              value={form.password}
-              onChange={handleChange('password')}
-              error={!!errors.password}
-              helperText={errors.password}
+              label="Last Name"
+              value={form.lastName}
+              onChange={handleChange('lastName')}
+              error={!!errors.lastName}
+              helperText={errors.lastName}
             />
-
-            <Button
-              type="submit"
-              variant="contained"
-              fullWidth
-              size="large"
-              disabled={isLoading}
-            >
-              {isLoading ? 'Signing up...' : 'Sign up'}
-            </Button>
-          </Stack>
-        </Box>
-
-        <Typography sx={{ mt: 2, textAlign: 'center' }}>
-          Already have an account?{' '}
-          <Link href="/login-form" underline="hover">
-            Log in
-          </Link>
-        </Typography>
-      </Paper>
-    </Container>
+          </Box>
+          
+          <TextField
+            fullWidth
+            label="Email"
+            type="email"
+            value={form.email}
+            onChange={handleChange('email')}
+            error={!!errors.email}
+            helperText={errors.email}
+          />
+          
+          <TextField
+            fullWidth
+            label="Password"
+            type="password"
+            value={form.password}
+            onChange={handleChange('password')}
+            error={!!errors.password}
+            helperText={errors.password}
+          />
+  
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            size="large"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Signing up...' : 'Sign up'}
+          </Button>
+        </Stack>
+      </Box>
+  
+      <Typography sx={{ mt: 2, textAlign: 'center' }}>
+        Already have an account?{' '}
+        <Link href="/login-form" underline="hover">
+          Log in
+        </Link>
+      </Typography>
+    </Paper>
+  </Container>
+  
   );
 }
 

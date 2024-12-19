@@ -83,7 +83,7 @@ export default function Navbar({ userType }) {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
-          <MenuItem onClick={handleMenuClose(setAnchorElPostJob)} href="/" >Post a Job</MenuItem>
+          <MenuItem onClick={handlePostProject} href="/post-project-layout" >Post a Job</MenuItem>
           <MenuItem onClick={handleMenuClose(setAnchorElPostJob)} href="/dashboard">Dashboard</MenuItem>
         </Menu>
       </div>
@@ -125,8 +125,13 @@ export default function Navbar({ userType }) {
 //logout 
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
-    navigate('/')
+    navigate('/');
   };
+
+  const handlePostProject = () =>{
+    navigate('/post-project-layout');
+    setAnchorElPostJob(null);
+  }
 
   return (
     <AppBar position="sticky" sx={{ backgroundColor: '#ffffff', color: '#000000' }}>

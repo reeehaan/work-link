@@ -1,14 +1,14 @@
-import { useState } from "react";
 import styles from "./Description.module.css";
+import PropTypes from 'prop-types';
 
-const ProjectDescription = () => {
-  const [description, setDescription] = useState("");
+const ProjectDescription = ({ description, setDescription }) => {
+  
   const maxLength = 500; 
 
 
   const handleChange = (event) => {
     setDescription(event.target.value);
-    console.log(event.target.value);
+    
   };
 
   return (
@@ -40,4 +40,8 @@ const ProjectDescription = () => {
   );
 };
 
+ProjectDescription.propTypes = {
+  description: PropTypes.string.isRequired,
+  setDescription: PropTypes.func.isRequired
+};
 export default ProjectDescription;

@@ -18,7 +18,6 @@ import ProjectScope from './Components/PostProject/ProjectScope';
 import ProjectBudget from './Components/PostProject/ProjectBudget';
 import ProjectDescription from './Components/PostProject/ProjectDescription';
 import ProjectDetails from './Components/PostProject/ProjectDetails';
-import Progress from './Components/PostProject/Progress';
 import PostProjectLayout from './Components/PostProject/PostProjectLayout';
 
 
@@ -123,12 +122,10 @@ const Layout = ({role}) =>{
         <Route path="/project-description"element={<ProjectDescription/>}> </Route>
         <Route path="/project-details"element={<ProjectDetails/>}> </Route>
 
-        <Route path="/project-progress"element={<Progress/>}> </Route>
-        <Route path="/post-project-layout"element={<PostProjectLayout/>}> </Route>
-
-        <Route path="/projects"element={<PostProjectLayout/>}> </Route>
 
 
+
+        
 
 
 
@@ -140,8 +137,10 @@ const Layout = ({role}) =>{
         </Route>
 
       <Route element={<ProtectedRoute allowedRole="client" />}>
+      <Route path="/post-project-layout"element={<PostProjectLayout/>}> </Route>
           <Route element={<Layout role={"client"}/>}>
             <Route path="/client"element={<Client/>} />
+            
           </Route>
         </Route>
 

@@ -1,23 +1,27 @@
+import PropTypes from 'prop-types';
 import styles from "./Scope.module.css";
-import { useState } from "react";
 
-const ProjectScope = () => {
-  const [projectType, setProjectType] = useState("");
-  const [projectDuration, setProjectDuration] = useState("");
-  const [experienceLevel, setExperienceLevel] = useState("");
+
+const ProjectScope = ({
+  projectType,
+  setProjectType,
+  projectDuration,
+  setProjectDuration,
+  experienceLevel,
+  setExperienceLevel}) => {
+
 
   const handleProjectTypeChange = (event) => {
     setProjectType(event.target.value);
-    console.log(event.target.value);
+    
     
   }
   const handleProjectDurationChange = (event) => {
     setProjectDuration(event.target.value);
-    console.log(event.target.value);
+    
   }
   const handleExperienceLevelChange= (event) => {
     setExperienceLevel(event.target.value);
-    console.log(event.target.value);
   }
 
 
@@ -159,4 +163,12 @@ const ProjectScope = () => {
   )
 }
 
+ProjectScope.propTypes = {
+  projectType: PropTypes.string.isRequired,
+  setProjectType: PropTypes.func.isRequired,
+  projectDuration: PropTypes.string.isRequired,
+  setProjectDuration: PropTypes.func.isRequired,
+  experienceLevel: PropTypes.string.isRequired,
+  setExperienceLevel: PropTypes.func.isRequired,
+};
 export default ProjectScope

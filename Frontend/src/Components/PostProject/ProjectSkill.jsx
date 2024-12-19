@@ -1,11 +1,8 @@
-import  { useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./Skill.module.css";
 
-const ProjectSkill = () => {
-  const [selectedSkills, setSelectedSkills] = useState([
-    
-  ]);
-
+const ProjectSkill = ({selectedSkills, setSelectedSkills}) => {
+  
   const popularSkills = [
     "WordPress",
     "Web Development",
@@ -81,4 +78,8 @@ const ProjectSkill = () => {
   );
 };
 
+ProjectSkill.propTypes = {
+  selectedSkills: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setSelectedSkills: PropTypes.func.isRequired,
+};
 export default ProjectSkill;

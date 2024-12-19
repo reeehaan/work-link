@@ -1,14 +1,12 @@
-import { useState } from "react";
+import PropTypes from 'prop-types';
 import styles from "./Budget.module.css";
 
-const ProjectBudget = () => {
+const ProjectBudget = ({ budget, setBudget }) => {
 
-  const [budget, setBudget] = useState();
 
   const getBudget= (event)=> {
     setBudget(event.target.value);
-    console.log(event.target.value);
-    
+  
   }
   return (
     <div className={styles.container}>
@@ -42,5 +40,9 @@ const ProjectBudget = () => {
     </div>
   );
 }
+ProjectBudget.propTypes = {
+  budget: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  setBudget: PropTypes.func.isRequired,
+};
 
 export default ProjectBudget

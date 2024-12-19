@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
 import styles from "./Progress.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Progress = ({ currentStep, totalSteps, nextStep, prevStep }) => {
   const progressPercentage = (currentStep / totalSteps) * 100;
 
+  const navigate = useNavigate();
+
+  const handleCancel = () =>{
+    navigate('/client',{ replace: true })
+  }
   return (
     <div className={styles.container}>
 
@@ -15,13 +21,22 @@ const Progress = ({ currentStep, totalSteps, nextStep, prevStep }) => {
       </div>
 
       
+      
+      
       <div className={styles.buttons}>
-        <button
+
+      <button
           className={styles.prevButton}
           onClick={prevStep}
           disabled={currentStep === 1}
         >
           Back
+        </button>
+        <button
+          className={styles.cancelButton}
+          onClick={handleCancel}
+        >
+          Cancel
         </button>
 
         <button className={styles.nextButton} onClick={nextStep}>
@@ -31,11 +46,12 @@ const Progress = ({ currentStep, totalSteps, nextStep, prevStep }) => {
     </div>
   );
 };
-Progress.propTypes = {
-  currentStep: PropTypes.number.isRequired, 
-  totalSteps: PropTypes.number.isRequired,  
-  nextStep: PropTypes.func.isRequired,      
-  prevStep: PropTypes.func.isRequired,      
-};
 
+
+Progress.propTypes = {
+  currentStep: PropTypes.number.isRequired,
+  totalSteps: PropTypes.number.isRequired,
+  nextStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func.isRequired
+};
 export default Progress;

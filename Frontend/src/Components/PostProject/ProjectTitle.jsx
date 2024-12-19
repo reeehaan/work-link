@@ -1,14 +1,12 @@
-import { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Title.module.css';
 
 
-const ProjectTitle = () => {
+const ProjectTitle = ({ projectTitle, setProjectTitle }) => {
   
-  const [projectTitle,setProjectTitle] = useState("");
 
   const handelProjectTitle = (event) =>{
     setProjectTitle(event.target.value);
-    console.log(event.target.value);
   }
 
   return (
@@ -42,6 +40,11 @@ const ProjectTitle = () => {
       </div>
     </div>
   );
+};
+
+ProjectTitle.propTypes = {
+  projectTitle: PropTypes.string.isRequired,
+  setProjectTitle: PropTypes.func.isRequired,
 };
 
 export default ProjectTitle;

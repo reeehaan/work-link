@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Section.module.css'; 
 
 const Section = () => {
@@ -16,7 +15,7 @@ const Section = () => {
       <div className={styles.sectionRight}>
         <h1>Find great work</h1>
         <p>
-          Meet clients you're excited to work with and take your career or business to new heights.
+          Meet clients you are excited to work with and take your career or business to new heights.
         </p>
         <ul>
           <li>Find opportunities for every stage of your freelance career</li>

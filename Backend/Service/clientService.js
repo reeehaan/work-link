@@ -9,4 +9,5 @@ const saveUserClient = async (userId) => {
     });
     await client.save();
 };
+
 module.exports = {saveUserClient};
