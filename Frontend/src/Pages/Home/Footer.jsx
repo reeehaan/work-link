@@ -1,9 +1,8 @@
-
 import styles from './Footer.module.css';
 
 const Footer = () => {
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={styles.footerContent}>
         {/* About Section */}
         <div className={styles.footerSection}>
@@ -43,16 +42,16 @@ const Footer = () => {
           <h4>Follow Us</h4>
           <div className={styles.socialMediaIcons}>
             <a href="https://www.facebook.com/Upwork" target="_blank" rel="noopener noreferrer">
-              <img src="https://via.placeholder.com/24x24?text=FB" alt="Facebook" />
+              <i className="fab fa-facebook"></i>
             </a>
             <a href="https://twitter.com/Upwork" target="_blank" rel="noopener noreferrer">
-              <img src="https://via.placeholder.com/24x24?text=TW" alt="Twitter" />
+              <i className="fab fa-twitter"></i>
             </a>
             <a href="https://www.linkedin.com/company/upwork" target="_blank" rel="noopener noreferrer">
-              <img src="https://via.placeholder.com/24x24?text=LI" alt="LinkedIn" />
+              <i className="fab fa-linkedin"></i>
             </a>
             <a href="https://www.instagram.com/upwork" target="_blank" rel="noopener noreferrer">
-              <img src="https://via.placeholder.com/24x24?text=IG" alt="Instagram" />
+              <i className="fab fa-instagram"></i>
             </a>
           </div>
         </div>
@@ -61,19 +60,18 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className={styles.footerBottom}>
         <div className={styles.footerBottomContent}>
-          <span>&copy; 2025 WorkLink Global Inc.</span>
+          <span>&copy; 2025 WorkLink Global Inc. All rights reserved.</span>
           <div className={styles.languageSelector}>
-            <span>Language: </span>
+            <span>Language:</span>
             <select>
               <option>English</option>
               <option>Spanish</option>
               <option>French</option>
-              {/* Add more languages as needed */}
             </select>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

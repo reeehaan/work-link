@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 export default function ActionButton({ selectedRole, onClick }) {
   return (
@@ -14,3 +14,7 @@ export default function ActionButton({ selectedRole, onClick }) {
 }
 
 
+ActionButton.propTypes = {
+  selectedRole: PropTypes.string.isRequired,  
+  onClick: PropTypes.func.isRequired          
+};

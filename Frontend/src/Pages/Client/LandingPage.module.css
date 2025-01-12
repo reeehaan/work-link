@@ -1,0 +1,13 @@
+.container{
+    margin: 30px;
+}
+
+.container h2{
+    font-size: 50px;
+}
+
+.container p {
+    font-size: 25px;
+    font-weight:300 ;
+    padding: 10px;
+}

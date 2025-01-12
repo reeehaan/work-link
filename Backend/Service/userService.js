@@ -3,6 +3,11 @@ const User = require("../Models/user");
 const bcrypt = require("bcryptjs");
 
 const Client = require("./clientService");
+const Freelancer = require("./freelancerService");
+
+
+const FreelancerModel = require('../Models/freelancer');
+const ClientModel = require('../Models/client');
 
 const register = async (req, res) => {
   try{
@@ -34,7 +39,10 @@ const register = async (req, res) => {
   if(req.body.selectedRole === "client"){
     Client.saveUserClient(savedUser._id)
   }
-  // TODO: create freelancer if role is freelancer
+  
+  if(req.body.selectedRole === "freelancer"){
+    Freelancer.saveUserFreelancer(savedUser._id)
+  }
 
   return res.status(202).send("Successful");
   }
@@ -75,5 +83,57 @@ const login = async (req, res) => {
     );
 };
 
+//retrieve user from User schema by their ID
+const getUserById = async (req, res) => {
+  try {
+      const { id } = req.params;
 
-module.exports = { register, login };
+      // Fetch user by ID
+      const user = await User.findById(id);
+
+      if (!user) {
+          return res.status(404).json({ message: "User not found" });
+      }
+
+      let response = {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          role: user.role,
+          image: user.image || null,
+      };
+
+      // If the user is a freelancer, fetch their profile details
+      if (user.role === "freelancer") {
+          const freelancerProfile = await FreelancerModel.findOne({ userId: user._id });
+
+          if (freelancerProfile) {
+              response.freelancerProfile = {
+                  title: freelancerProfile.title,
+                  bio: freelancerProfile.bio,
+                  skills: freelancerProfile.skills,
+                  portfolio: freelancerProfile.portfolio,
+              };
+          }
+      }
+      // If the user is a client, fetch their profile details
+      if (user.role === "client") {
+        const ClientProfile = await ClientModel.findOne({ user: user._id });
+
+        if (ClientProfile) {
+            response.ClientProfile = {
+                companyName: ClientProfile.companyName,
+                contactNumber: ClientProfile.contactNumber,        
+            };
+        }
+    }
+
+      // Return the response
+      return res.status(200).json(response);
+  } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "An error occurred", error: error.message });
+  }
+};
+module.exports = { register, login, getUserById};

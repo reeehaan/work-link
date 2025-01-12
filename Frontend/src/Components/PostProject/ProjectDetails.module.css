@@ -16,7 +16,7 @@
   .projectTitle,
   .projectDescription,
   .projectSkill,
-  .projectScope,
+  .projectType,
   .projectBudget {
     background-color: #ffffff;
     padding: 20px;
@@ -27,7 +27,7 @@
   .projectTitle h4,
   .projectDescription h4,
   .projectSkill h4,
-  .projectScope h4,
+  .projectType h4,
   .projectBudget h4 {
     font-size: 1.1rem;
     font-weight: 600;
@@ -38,7 +38,7 @@
   .projectTitle .value,
   .projectDescription .value,
   .projectSkill .value,
-  .projectScope .value,
+  .projectType .value,
   .projectBudget .value {
     font-size: 1rem;
     font-weight: 300;

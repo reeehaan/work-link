@@ -3,13 +3,16 @@ const Client = require('../Models/client');
 
 const createProject = async (req, res) => {
     // Get client record using user ID from JWT token
+    console.log(req.user)
     const client = await Client.findOne({ user: req.user._id });
-    
+    if(!client) {
+        return null;
+    }
     const project = new Project({
         title: req.body.title,
         skills: req.body.skills,
         scope: {
-            projectScope: req.body.scope.projectScope,
+            projectType: req.body.scope.projectType,
             projectDuration: req.body.scope.projectDuration,
             experience: req.body.scope.experience
         },

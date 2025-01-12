@@ -1,4 +1,6 @@
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import { 
   Box,
   Typography,
@@ -6,7 +8,9 @@ import {
   Chip,
   Stack,
   Container,
-} from '@mui/material';
+  Button,
+  Alert,
+} from "@mui/material";
 
 const ProjectDetails = ({ 
   projectTitle = "Untitled Project",
@@ -17,9 +21,49 @@ const ProjectDetails = ({
   budget = 0,
   description = "No description provided.",
 }) => {
+  const [message, setMessage] = useState(null); // To store success or error message
+  const [severity, setSeverity] = useState(null); // To set the message type (success or error)
+
+  const createProject = async () => {
+    try {
+      const projectData = {
+        title: projectTitle,
+        skills: selectedSkills,
+        scope: {
+          projectType: projectType,
+          projectDuration: projectDuration,
+          experience: experienceLevel,
+        },
+        budget: budget,
+        description: description,
+      };
+
+      const apiUrl = "http://localhost:3000/api/project"; 
+      const accessToken = localStorage.getItem("accessToken");
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+
+      // Make the POST request
+      const response = await axios.post(apiUrl, projectData, config);
+
+      // Show success message
+      setMessage("Project posted successfully!");
+      setSeverity("success");
+    } catch (error) {
+      // Show error message
+      const errorMessage = error.response?.data?.message || "Failed to post the project.";
+      setMessage(errorMessage);
+      setSeverity("error");
+    }
+  };
+
   return (
     <Container maxWidth="md">
-      <Paper elevation={0} sx={{ p: 4, mt: 4 }}>
+      <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
         <Typography variant="h4" gutterBottom>
           Project Details
         </Typography>
@@ -99,6 +143,27 @@ const ProjectDetails = ({
               {description}
             </Typography>
           </Box>
+
+          
+          <Box>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              size="large"
+              onClick={createProject}
+            >
+              Post This Project
+            </Button>
+          </Box>
+
+          {message && (
+            <Box>
+              <Alert severity={severity} onClose={() => setMessage(null)}>
+                {message}
+              </Alert>
+            </Box>
+          )}
+
         </Stack>
       </Paper>
     </Container>
@@ -114,4 +179,5 @@ ProjectDetails.propTypes = {
   budget: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   description: PropTypes.string.isRequired,
 };
+
 export default ProjectDetails;

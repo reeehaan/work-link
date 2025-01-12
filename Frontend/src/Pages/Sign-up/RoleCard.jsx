@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
  export default function RoleCard({ role, icon, description, isSelected, onClick }) {
   return (
     <div
@@ -11,5 +11,11 @@
     </div>
   );
 }
-
+RoleCard.propTypes = {
+  role: PropTypes.string.isRequired, 
+  icon: PropTypes.node.isRequired, 
+  description: PropTypes.string.isRequired, 
+  isSelected: PropTypes.bool.isRequired, 
+  onClick: PropTypes.func.isRequired, 
+};
 

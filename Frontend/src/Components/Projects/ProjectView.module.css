@@ -1,0 +1,63 @@
+.projectView {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .projectTitle {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .projectDescription {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .projectType,
+  .projectDetailsSection {
+    margin-top: 20px;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .saveButton,
+  .applyButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .saveButton {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .applyButton {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .saveButton:hover {
+    background-color: #218838;
+  }
+  
+  .applyButton:hover {
+    background-color: #0056b3;
+  }
+  

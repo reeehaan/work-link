@@ -10,6 +10,10 @@ const Progress = ({ currentStep, totalSteps, nextStep, prevStep }) => {
   const handleCancel = () =>{
     navigate('/client',{ replace: true })
   }
+
+  const handleFinish = () =>{
+    navigate('/client',{ replace: true})
+  }
   return (
     <div className={styles.container}>
 
@@ -39,7 +43,9 @@ const Progress = ({ currentStep, totalSteps, nextStep, prevStep }) => {
           Cancel
         </button>
 
-        <button className={styles.nextButton} onClick={nextStep}>
+        <button className={styles.nextButton} onClick={currentStep === totalSteps
+              ? handleFinish 
+              : nextStep }>
           {currentStep === totalSteps ? "Finish" : "Next"}
         </button>
       </div>

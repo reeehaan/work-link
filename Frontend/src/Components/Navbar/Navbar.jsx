@@ -137,7 +137,7 @@ export default function Navbar({ userType }) {
     <AppBar position="sticky" sx={{ backgroundColor: '#ffffff', color: '#000000' }}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          <a href="/home" style={{ textDecoration: 'none', color: '#000000' }}>
+          <a href="/" style={{ textDecoration: 'none', color: '#000000', fontWeight: 'bold'}}>
             Work<span style={{ color: '#00b3ff' }}>Link</span>
           </a>
         </Typography>

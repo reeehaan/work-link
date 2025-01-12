@@ -1,9 +1,11 @@
+
 #container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh; 
+  background: #fff;
 }
 
 .role-selection {
@@ -16,38 +18,46 @@
 
 .card {
   border: 2px solid #ddd;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 20px;
   width: 300px;
   text-align: left;
   cursor: pointer;
   transition: all 0.3s ease; 
   position: relative;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .card p {
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
   color: #333;
   margin-top: 10px;
 }
 
 .card .icon {
-  font-size: 40px;
-  color: #666;
+  font-size: 50px; 
+  color: #0c9cf5;
 }
 
 .card.selected {
   border-color: #0c9cf5;
   background-color: #d5eaff;
-  box-shadow: 0 0 10px rgba(16, 197, 242, 0.261);
+  box-shadow: 0 0 20px rgba(16, 197, 242, 0.3); 
+  transform: scale(1.05); 
+}
+
+.card:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2); 
 }
 
 .radio-selected {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 16px;
+  font-size: 20px; 
   color: #0c9cf5;
 }
 
@@ -57,26 +67,20 @@
   margin-top: 20px;
 }
 
-.action {
-  display: block;
-  justify-content: center;
-  margin-top: 20px;
-}
-
 .action-button {
   background-color: #0c9cf5;
   color: white;
-  font-size: 16px;
+  font-size: 18px;
   border: none;
   padding: 15px 25px;
-  border-radius: 15px;
+  border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 .action-button:hover {
-  background-color: #0056b3; 
-  transform: scale(1.05); 
+  background-color: #0c6cd2;
+  transform: scale(1.05);
 }
 
 .action p {

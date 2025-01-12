@@ -11,7 +11,10 @@ import MainContent from './Pages/Home/MainContent';
 import Client from './Pages/Client';
 import Freelancer from './Pages/Freelancer';
 import ProtectedRoute from './common/ProtectedRoute';
+
 import FreelancerProfile from './Components/Profile/FreelancerProfile';
+
+
 import ProjectTitle from './Components/PostProject/ProjectTitle';
 import ProjectSkill from './Components/PostProject/ProjectSkill';
 import ProjectScope from './Components/PostProject/ProjectScope';
@@ -21,6 +24,64 @@ import ProjectDetails from './Components/PostProject/ProjectDetails';
 import PostProjectLayout from './Components/PostProject/PostProjectLayout';
 
 
+import ProjectView from "./Components/Projects/ProjectView";
+
+
+
+
+const projects = [
+  {
+    _id: { $oid: "6762ffa7d9e89e05e1f2c8c7" },
+    title: "E-commerce Website",
+    skills: ["React", "Node.js", "MongoDB"],
+    scope: {
+      projectType: "Full website development",
+      projectDuration: "3 months",
+      experience: "Intermediate",
+    },
+    budget: { $numberInt: "5000" },
+    description:
+      "Need to build a full e-commerce website with user authentication, product catalog, and payment integration",
+    client: { $oid: "6762ff7cd9e89e05e1f2c8c3" },
+    createdAt: { $date: { $numberLong: "1734541223808" } },
+    __v: { $numberInt: "0" },
+  },
+  
+
+  {
+    _id: { $oid: "6762ffa7d9e89e05e1f2c8c7" },
+    title: "E-commerce Website",
+    skills: ["React", "Node.js", "MongoDB"],
+    scope: {
+      projectType: "Full website development",
+      projectDuration: "3 months",
+      experience: "Intermediate",
+    },
+    budget: { $numberInt: "5000" },
+    description:
+      "Need to build a full e-commerce website with user authentication, product catalog, and payment integration",
+    client: { $oid: "6762ff7cd9e89e05e1f2c8c3" },
+    createdAt: { $date: { $numberLong: "1734541223808" } },
+    __v: { $numberInt: "0" },
+  },
+
+  {
+    _id: { $oid: "6762ffa7d9e89e05e1f2c8c7" },
+    title: "E-commerce Website",
+    skills: ["React", "Node.js", "MongoDB"],
+    scope: {
+      projectType: "Full website development",
+      projectDuration: "3 months",
+      experience: "Intermediate",
+    },
+    budget: { $numberInt: "5000" },
+    description:
+      "Need to build a full e-commerce website with user authentication, product catalog, and payment integration",
+    client: { $oid: "6762ff7cd9e89e05e1f2c8c3" },
+    createdAt: { $date: { $numberLong: "1734541223808" } },
+    __v: { $numberInt: "0" },
+  },
+];
 
 const customTheme = createTheme({
   palette: {
@@ -112,7 +173,6 @@ const Layout = ({role}) =>{
         <Route path="/signup"element={<RoleSelection/>}> </Route>
         <Route path="/signup-form"element={<SignupForm/>}> </Route>
         <Route path="/login-form"element={<LoginForm/>}> </Route>
-        <Route path="/freelancer-profile"element={<FreelancerProfile/>}> </Route>
         
         
         <Route path="/project-title"element={<ProjectTitle/>}> </Route>
@@ -122,20 +182,28 @@ const Layout = ({role}) =>{
         <Route path="/project-description"element={<ProjectDescription/>}> </Route>
         <Route path="/project-details"element={<ProjectDetails/>}> </Route>
 
-
-
-
+        
+        
         
 
 
 
-        {/* Protected Route Freelancer*/}
+      {/* Protected Route Freelancer*/}
         <Route element={<ProtectedRoute allowedRole="freelancer" />}>
           <Route element={<Layout role={"freelancer"}/>}>
             <Route path="/freelancer" element={<Freelancer />} />
+            
+            <Route
+              path="/project/:projectId"
+              element={<ProjectView projects={projects} />}  
+            />
+            <Route path="/freelancer/profile" element={<FreelancerProfile />} />
+           
+
           </Route>
         </Route>
 
+      {/* Protected Route Client*/}
       <Route element={<ProtectedRoute allowedRole="client" />}>
       <Route path="/post-project-layout"element={<PostProjectLayout/>}> </Route>
           <Route element={<Layout role={"client"}/>}>

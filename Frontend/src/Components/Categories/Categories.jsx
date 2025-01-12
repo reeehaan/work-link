@@ -1,4 +1,4 @@
-import styles from './Categories.module.css'; 
+import styles from './Categories.module.css';
 
 const categories = [
   { name: 'Programming & Tech', image: 'src/assets/freelancer-page1/prog1.png' },
@@ -11,7 +11,7 @@ const Categories = () => {
   return (
     <section className={styles.categories}>
       <h2>
-        Choose Different <span>Category</span>
+        Choose Your <span>Category</span>
       </h2>
       <div className={styles.categoriesContainer}>
         {categories.map((category, index) => (
@@ -21,7 +21,9 @@ const Categories = () => {
             onClick={() => alert(`${category.name} clicked!`)}
           >
             <img src={category.image} alt={category.name} />
-            <h3>{category.name}</h3>
+            <div className={styles.overlay}>
+              <h3>{category.name}</h3>
+            </div>
           </div>
         ))}
       </div>

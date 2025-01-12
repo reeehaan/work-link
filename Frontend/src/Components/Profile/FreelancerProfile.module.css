@@ -1,259 +1,57 @@
 .mainContent {
-    
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  
-  
-  /* Profile Header */
-  .profileHeader {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .profilePicContainer {
-    margin-right: 20px;
-  }
-  
-  .profilePic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  .profileBasicInfo h1 {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-  
-  .profileBasicInfo p {
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  .profileHeader div {
-    font-size: 1rem;
-    color: #ffcc00;
-  }
-  
-  /* Bio Section */
-  .profileBio h3 {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .profileBio textarea {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
-  }
-  
-  .profileBio p {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.5;
-  }
-  
-  /* Skills Section */
-  .profileSkills h3 {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .profileSkills ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .skillTag {
-    display: inline-block;
-    background-color: #f1f1f1;
-    color: #333;
-    font-size: 0.9rem;
-    padding: 5px 10px;
-    margin: 5px 5px 0 0;
-    border-radius: 15px;
-  }
-  
-  /* Portfolio Section */
-  .portfolioSection {
-    margin-top: 20px;
-  }
-  
-  .portfolioSection h3 {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .portfolioSection ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    text-decoration: none;
-  }
-  
-  .portfolioSection li {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    max-width: calc(33.33% - 10px);
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .portfolioSection li:hover {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  /* Feedback for Clients */
-  .feedbackForClients {
-    margin-top: 20px;
-  }
-  
-  .feedbackForClients h3 {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .feedbackForClients textarea {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
-  }
-  
-  .feedbackForClients button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #ffffff;
-    background-color: #28bdfd;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  
-  
-  /* Footer Section */
-  .profileFooter {
-    margin-top: 30px;
-    border-top: 1px solid #e6e6e6;
-    padding-top: 20px;
-    text-align: center;
-  }
-  
-  .profileFooter div {
-    margin: 10px 0;
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
 
-  /* Add to FreelancerProfile.module.css */
+.profileHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profilePic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.editButton {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #00b3ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bioSection, .skillsSection, .portfolioSection {
+  margin-bottom: 20px;
+}
+
+.skillsSection ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.skill {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
 
 .portfolioGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* 3 items per row */
-    gap: 20px;
-  }
-  
-  .portfolioItem {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-    border-radius: 8px;
-  }
-  
-  .portfolioImage {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
-  
-  .portfolioItem h4 {
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  /* Add to FreelancerProfile.module.css */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
 
-.profileHeaderContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .profileActionButtons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .actionBtn {
-    background-color: #00b3ff;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .actionBtn:hover {
-    background-color: #0482b9;
-  }
-  
-  .profileHeader {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .profilePicContainer {
-    width: 150px;
-    height: 150px;
-  }
-  
-  .profilePic {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  }
-  
-  .profileBasicInfo {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .profileBasicInfo h1 {
-    font-size: 24px;
-    margin: 0;
-  }
-  
-  .profileBasicInfo p {
-    font-size: 16px;
-    color: #555;
-  }
-  
-  
+.portfolioCard img {
+  width: 100%;
+  border-radius: 5px;
+}
