@@ -37,7 +37,7 @@ const projectSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    client: {
+    clientId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "client", 
         required: true,

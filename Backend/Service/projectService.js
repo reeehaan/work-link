@@ -3,8 +3,7 @@ const Client = require('../Models/client');
 
 const createProject = async (req, res) => {
     // Get client record using user ID from JWT token
-    console.log(req.user)
-    const client = await Client.findOne({ user: req.user._id });
+    const client = await Client.findOne({ userId: req.user._id });
     if(!client) {
         return null;
     }
@@ -18,7 +17,7 @@ const createProject = async (req, res) => {
         },
         budget: req.body.budget,
         description: req.body.description,
-        client: client._id
+        clientId: client._id
     });
 
     await project.save();
@@ -26,13 +25,20 @@ const createProject = async (req, res) => {
 };
 
 const getProjectsByClientId = async (req, res) => {
-    const projects = await Project.find({ client: req.params.clientId });
+    const projects = await Project.find({ clientId: req.params.clientId });
     res.send(projects);
 };
 
 const getAllProjects = async (req, res) => {
     const projects = await Project.find()
-        .populate('client', 'companyName'); // This will also include company name from client
+        .populate('clientId'); // This will also include company name from client
+
+    res.send(projects);
+};
+// This will include 5 recent projects
+const getRecentProjects = async (req, res) => {
+    const projects = await Project.find()
+        .populate('clientId').sort({createdAt:-1}).limit(5); 
 
     res.send(projects);
 };
@@ -40,5 +46,6 @@ const getAllProjects = async (req, res) => {
 module.exports = {
     createProject,
     getProjectsByClientId,
-    getAllProjects
+    getAllProjects,
+    getRecentProjects
 };

@@ -29,6 +29,10 @@ const freelancerSchema = new mongoose.Schema({
             ],
             default: [], 
         },
+        email:{
+            type: String,
+            default: "", 
+        },
     },
 );
     

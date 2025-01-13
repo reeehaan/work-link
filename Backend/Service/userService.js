@@ -114,6 +114,7 @@ const getUserById = async (req, res) => {
                   bio: freelancerProfile.bio,
                   skills: freelancerProfile.skills,
                   portfolio: freelancerProfile.portfolio,
+                  email: freelancerProfile.email,
               };
           }
       }
@@ -124,7 +125,8 @@ const getUserById = async (req, res) => {
         if (ClientProfile) {
             response.ClientProfile = {
                 companyName: ClientProfile.companyName,
-                contactNumber: ClientProfile.contactNumber,        
+                contactNumber: ClientProfile.contactNumber,
+                email: ClientProfile.email,        
             };
         }
     }

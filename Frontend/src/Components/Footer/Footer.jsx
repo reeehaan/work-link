@@ -13,7 +13,7 @@ const Footer = () => {
         color: '#333',
       }}
     >
-      <Box sx={{ maxWidth: 250 }}>
+      <Box sx={{ maxWidth: 250}}>
         <Typography variant="h6" sx={{ mb: 1,color: '#007bff' }}>
           WorkLink
         </Typography>

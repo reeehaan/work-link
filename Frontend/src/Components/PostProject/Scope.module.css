@@ -1,6 +1,7 @@
 
 .container {
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: flex-start;
   padding: 30px;
@@ -14,6 +15,9 @@
 
 .leftSection h2{
   font-size: 36px;
+}
+.leftSection p{
+  color: #555;
 }
 
 .rightSection {

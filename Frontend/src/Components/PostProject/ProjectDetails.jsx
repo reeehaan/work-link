@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { 
@@ -48,7 +48,7 @@ const ProjectDetails = ({
       };
 
       // Make the POST request
-      const response = await axios.post(apiUrl, projectData, config);
+      await axios.post(apiUrl, projectData, config);
 
       // Show success message
       setMessage("Project posted successfully!");
@@ -63,7 +63,7 @@ const ProjectDetails = ({
 
   return (
     <Container maxWidth="md">
-      <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
+      <Paper elevation={3} sx={{ p: 4, mt: 4 ,position: "relative" }}>
         <Typography variant="h4" gutterBottom>
           Project Details
         </Typography>

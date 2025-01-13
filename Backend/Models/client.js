@@ -3,13 +3,17 @@ const mongoose = require("mongoose");
 const clientSchema = new mongoose.Schema({
     companyName:{
         type: String,
-        required: true,
+        default: "",
     },
     contactNumber:{
         type: Number,
-        required: true,
+        default: "",
     },
-    user: {
+    email:{
+        type: String,
+        default: "",
+    },
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user", 
         required: true,

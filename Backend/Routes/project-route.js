@@ -13,7 +13,8 @@ router.get('/client/:clientId', verifyToken, Project.getProjectsByClientId);
 // Get all projects (accessible to all authenticated users)
 router.get('/all', verifyToken, Project.getAllProjects);
 
-
+// Get 5 Recent projects
+router.get('/recent', verifyToken, Project.getRecentProjects);
 
 
 
