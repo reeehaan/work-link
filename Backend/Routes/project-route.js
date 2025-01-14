@@ -16,6 +16,7 @@ router.get('/all', verifyToken, Project.getAllProjects);
 // Get 5 Recent projects
 router.get('/recent', verifyToken, Project.getRecentProjects);
 
-
+//Get project by project ID
+router.get('/:projectId', Project.getProjectByProjectId); 
 
 module.exports = router;

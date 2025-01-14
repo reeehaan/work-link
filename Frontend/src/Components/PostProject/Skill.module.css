@@ -1,129 +1,174 @@
 .container {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-    align-items: center;
-    gap: 50px;
-    padding: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 100vh;
-  }
-  
-  .leftSection {
-    flex: 1;
-    max-width: 50%;
-  }
-  
-  .leftSection p {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #817f7f; 
-  }
-  
-  .leftSection h2 {
-    font-size: 36px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #000; 
-    text-align: left;
-  }
-  
-  .rightSection {
-    flex: 1;
-    max-width: 55%;
-  }
-  
-  .inputSection {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .searchInput {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-  }
-  
-  .searchInput:focus {
-    border: 1px solid #007aff;
-  }
-  
-  .infoText {
-    margin-top: 5px;
-    color: #6b6b6b;
-    font-size: 14px;
-  }
-  
-  .sectionTitle {
-    font-weight: bold;
-    margin: 15px 0 10px;
-    color: #333;
-  }
-  
-  .selectedSkills,
-  .popularSkills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .skillTag {
-    background-color: #f3f3f3;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-  }
-  .skillTag:hover{
-    background-color: #d5d5d8;
-  }
-  
-  .skillTag span {
-    color: #22a6e8;
-    font-size: 15px;
-    font-weight: 200;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 40px 20px; /* Adjusted padding for better mobile responsiveness */
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh; /* Changed to min-height for better adaptability */
+  box-sizing: border-box;
+}
+
+.leftSection {
+  flex: 1;
+  max-width: 45%; /* Adjusted max-width for better alignment */
+}
+
+.leftSection p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #817f7f;
+}
+
+.leftSection h2 {
+  font-size: 32px; /* Adjusted for better scalability on smaller screens */
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #000;
+  text-align: left;
+}
+
+.rightSection {
+  flex: 1;
+  max-width: 55%;
+}
+
+.inputSection {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchInput:focus {
+  border: 1px solid #007aff;
+  box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
+}
+
+.addSkillBtn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007aff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.addSkillBtn:hover {
+  background-color: #005bb5;
+  box-shadow: 0 3px 6px rgba(0, 91, 181, 0.3);
+}
+
+.infoText {
+  margin-top: 5px;
+  color: #6b6b6b;
+  font-size: 14px;
+}
+
+.sectionTitle {
+  font-weight: bold;
+  margin: 15px 0 10px;
+  color: #333;
+}
+
+.selectedSkills,
+.popularSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skillTag {
+  background-color: #f3f3f3;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skillTag:hover {
+  background-color: #e0e0e3;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.skillTag span {
+  color: #22a6e8;
+  font-size: 15px;
+  font-weight: 200;
+  cursor: pointer;
+}
+
+.skillButton {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.skillButton:hover {
+  background-color: #1f95da;
+  color: #fff;
+  border-color: #007aff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
   }
 
-  
+  .leftSection,
+  .rightSection {
+    max-width: 100%;
+  }
+
+  .leftSection h2 {
+    font-size: 28px; /* Adjusted for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .searchInput {
+    font-size: 14px; /* Adjusted font size for smaller screens */
+    padding: 10px;
+  }
+
+  .addSkillBtn {
+    font-size: 12px; /* Reduced button font size */
+    padding: 8px 15px;
+  }
+
+  .skillTag,
   .skillButton {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    padding: 8px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    font-size: 12px; /* Adjusted font size for smaller components */
+    padding: 6px 10px;
   }
-  
-  .skillButton:hover {
-    background-color: #1f95da;
-    color: #fff;
-    border-color: #007aff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      gap: 30px;
-    }
-  
-    .leftSection,
-    .rightSection {
-      max-width: 100%;
-    }
-  }
-  
+}

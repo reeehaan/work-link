@@ -35,6 +35,19 @@ const getAllProjects = async (req, res) => {
 
     res.send(projects);
 };
+
+//Get project by projectId 
+const getProjectByProjectId = async (req, res) => {
+    const { projectId } = req.params; // Get projectId from the URL params
+
+    const project = await Project.findById(projectId)
+        .populate('clientId');
+    if (!project) {
+        return res.status(404).send("Project not found");
+    }
+
+    res.send(project);
+};
 // This will include 5 recent projects
 const getRecentProjects = async (req, res) => {
     const projects = await Project.find()
@@ -47,5 +60,6 @@ module.exports = {
     createProject,
     getProjectsByClientId,
     getAllProjects,
-    getRecentProjects
+    getRecentProjects,
+    getProjectByProjectId
 };

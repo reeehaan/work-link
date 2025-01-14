@@ -23,65 +23,13 @@ import ProjectDescription from './Components/PostProject/ProjectDescription';
 import ProjectDetails from './Components/PostProject/ProjectDetails';
 import PostProjectLayout from './Components/PostProject/PostProjectLayout';
 
-
+import ProjectList from './Components/Projects/ProjectList';
 import ProjectView from "./Components/Projects/ProjectView";
 
 
 
 
-const projects = [
-  {
-    _id: { $oid: "6762ffa7d9e89e05e1f2c8c7" },
-    title: "E-commerce Website",
-    skills: ["React", "Node.js", "MongoDB"],
-    scope: {
-      projectType: "Full website development",
-      projectDuration: "3 months",
-      experience: "Intermediate",
-    },
-    budget: { $numberInt: "5000" },
-    description:
-      "Need to build a full e-commerce website with user authentication, product catalog, and payment integration",
-    client: { $oid: "6762ff7cd9e89e05e1f2c8c3" },
-    createdAt: { $date: { $numberLong: "1734541223808" } },
-    __v: { $numberInt: "0" },
-  },
-  
 
-  {
-    _id: { $oid: "6762ffa7d9e89e05e1f2c8c7" },
-    title: "E-commerce Website",
-    skills: ["React", "Node.js", "MongoDB"],
-    scope: {
-      projectType: "Full website development",
-      projectDuration: "3 months",
-      experience: "Intermediate",
-    },
-    budget: { $numberInt: "5000" },
-    description:
-      "Need to build a full e-commerce website with user authentication, product catalog, and payment integration",
-    client: { $oid: "6762ff7cd9e89e05e1f2c8c3" },
-    createdAt: { $date: { $numberLong: "1734541223808" } },
-    __v: { $numberInt: "0" },
-  },
-
-  {
-    _id: { $oid: "6762ffa7d9e89e05e1f2c8c7" },
-    title: "E-commerce Website",
-    skills: ["React", "Node.js", "MongoDB"],
-    scope: {
-      projectType: "Full website development",
-      projectDuration: "3 months",
-      experience: "Intermediate",
-    },
-    budget: { $numberInt: "5000" },
-    description:
-      "Need to build a full e-commerce website with user authentication, product catalog, and payment integration",
-    client: { $oid: "6762ff7cd9e89e05e1f2c8c3" },
-    createdAt: { $date: { $numberLong: "1734541223808" } },
-    __v: { $numberInt: "0" },
-  },
-];
 
 const customTheme = createTheme({
   palette: {
@@ -193,10 +141,9 @@ const Layout = ({role}) =>{
           <Route element={<Layout role={"freelancer"}/>}>
             <Route path="/freelancer" element={<Freelancer />} />
             
-            <Route
-              path="/project/:projectId"
-              element={<ProjectView projects={projects} />}  
-            />
+            <Route path="/project" element={<ProjectList/>} />
+            <Route path="/project/:projectId" element={<ProjectView />} />
+            
             <Route path="/freelancer/profile" element={<FreelancerProfile />} />
            
 

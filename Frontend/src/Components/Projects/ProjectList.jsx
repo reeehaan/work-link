@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ProjectList.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import moment from "moment"; // Importing moment for time formatting
 
 const ProjectList = () => {
   const navigate = useNavigate();
@@ -23,8 +24,8 @@ const ProjectList = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       };
-
       const response = await axios.get(apiUrl, config);
+
       setProjects(response.data);
     } catch (error) {
       setError("Unable to fetch projects. Please try again later.");
@@ -37,6 +38,27 @@ const ProjectList = () => {
   useEffect(() => {
     getRecentProjects();
   }, []);
+
+  // Function to format the posted time
+  const formatTimeAgo = (createdAt) => {
+  const timeAgo = moment(createdAt);
+  const diffInMinutes = moment().diff(timeAgo, 'minutes');
+  const diffInHours = moment().diff(timeAgo, 'hours');
+  const diffInDays = moment().diff(timeAgo, 'days');
+
+  // If the time difference is less than 60 minutes, show minutes
+  if (diffInMinutes < 60) {
+    return `Posted ${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''} ago`;
+  }
+  // If the time difference is less than 24 hours, show hours
+  else if (diffInHours < 24) {
+    return `Posted ${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
+  }
+  // If the time difference is 24 hours or more, show days
+  else {
+    return `Posted ${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
+  }
+};
 
   return (
     <div className={styles.projectList}>
@@ -53,6 +75,11 @@ const ProjectList = () => {
               className={styles.projectCard}
               onClick={() => handleProjectClick(project._id)}
             >
+              {/* Time ago display */}
+              <div className={styles.postedTime}>
+                {formatTimeAgo(project.createdAt)}
+              </div>
+
               <h3 className={styles.projectTitle}>{project.title}</h3>
               <p className={styles.projectDescription}>
                 {project.description.length > 100
