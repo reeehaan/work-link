@@ -1,63 +1,198 @@
 .projectView {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  font-family: 'Poppins', sans-serif;
+  padding: 30px;
+  background-color:#fff;
+}
   
-  .projectTitle {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
+.header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.projectTitle {
+  font-size: 2rem;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+}
+
+.projectDescription {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.6;
+  margin-top: 12px;
+  text-align: justify;
   
-  .projectDescription {
-    font-size: 1.1rem;
-    color: #555;
-  }
+}
+
+.detailsContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.projectDetails,
+.clientDetails {
+  flex: 1;
+  padding: 25px;
+}
+
+.projectDetails {
+  margin-right: 20px;
+}
+
+.projectDetails .horizontalLine {
+  border: none;
+  border-top: 4px solid #ddd;
+  margin: 20px 0;
+}
+
+.projectDetails h3,
+.clientDetails h3 {
+  font-size: 1.2rem;
+  color: #3e9cff;
+  margin-bottom: 15px;
+}
+
+.projectDetails p,
+.clientDetails p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.projectDetails i,
+.clientDetails i {
+  margin-right: 5px;
+  font-size: 20px;
+  color: #1d70f6;
+}
+
+.clientDetails {
+  flex: 1;
+  padding: 25px;
+  margin-right: -50px; /* Moves the clientDetails section to the left */
+}
+
+.skillsSection h3 {
+  font-size: 1.4rem;
+  color: #3e9cff;
+  margin-bottom: 15px;
+}
+
+.skillsSection p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.skillsBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.skillsBox .skill {
+  padding: 8px 15px;
+  background-color: #00b3ff;
+  color: #fff;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  text-transform: capitalize;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.skillsBox .skill:hover {
+  background-color: #3796da;
   
-  .projectType,
-  .projectDetailsSection {
-    margin-top: 20px;
+}
+
+.actions {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column; 
+  align-items:flex-end;
+  margin: 30px;
+  gap: 20px; 
+}
+
+.saveButton {
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  background-color: #2989f0;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 200px; /* Adjusts the button width for a consistent look */
+}
+
+.saveButton i{
+  color: white;
+}
+
+.applyButton {
+  background-color: #fff; /* White background */
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #2989f0; /* Blue text */
+  border: 3px solid #2989f0; /* Blue border */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 200px; /* Adjusts the button width for a consistent look */
+}
+
+.applyButton:hover {
+  background-color: #a9c5f0; /* Slightly darker blue background */
+  color: #0d75e4; /* Darker blue text */
+  border-color: #0668f1; /* Darker blue border */
+}
+
+
+
+
+
+.loading,
+.error,
+.noProject {
+  font-size: 1.4rem;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+  font-weight: 500;
+}
+
+.loading {
+  color: #0056b3;
+}
+
+.error {
+  color: #d9534f;
+}
+
+.noProject {
+  color: #f0ad4e;
+}
+
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
   }
-  
-  h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
-  
-  .actions {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-  }
-  
-  .saveButton,
-  .applyButton {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .saveButton {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  .applyButton {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .saveButton:hover {
-    background-color: #218838;
-  }
-  
-  .applyButton:hover {
-    background-color: #0056b3;
-  }
-  
+}
+
+.projectView {
+  animation: slideIn 0.8s ease-out;
+}

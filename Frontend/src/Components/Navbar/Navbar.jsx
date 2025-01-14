@@ -45,7 +45,7 @@ export default function Navbar({ userType }) {
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
           <MenuItem onClick={handleMenuClose(setAnchorElWork)} href="/findFreelancer">Find Work</MenuItem>
-          <MenuItem onClick={handleMenuClose(setAnchorElWork)} href="/savedJobs">Saved Jobs</MenuItem>
+          <MenuItem onClick={handleMenuClose(setAnchorElWork)} href="/savedJobs">Saved Projects</MenuItem>
           <MenuItem onClick={handleMenuClose(setAnchorElWork)} href="/proposals">Proposals</MenuItem>
         </Menu>
       </div>
@@ -83,7 +83,7 @@ export default function Navbar({ userType }) {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
-          <MenuItem onClick={handlePostProject} href="/post-project-layout" >Post a Job</MenuItem>
+          <MenuItem onClick={handlePostProject} href="/post-project-layout" >Post a Project</MenuItem>
           <MenuItem onClick={handleMenuClose(setAnchorElPostJob)} href="/dashboard">Dashboard</MenuItem>
         </Menu>
       </div>
