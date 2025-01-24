@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './Categories.module.css';
 
 const categories = [
@@ -8,6 +9,12 @@ const categories = [
 ];
 
 const Categories = () => {
+
+  const navigate = useNavigate();
+
+  const handleCategoryClick = () => {
+    navigate(`/project/all`);
+    }
   return (
     <section className={styles.categories}>
       <h2>
@@ -18,7 +25,7 @@ const Categories = () => {
           <div
             className={styles.category}
             key={index}
-            onClick={() => alert(`${category.name} clicked!`)}
+            onClick={() => handleCategoryClick()}
           >
             <img src={category.image} alt={category.name} />
             <div className={styles.overlay}>

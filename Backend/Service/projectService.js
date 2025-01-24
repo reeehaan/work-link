@@ -31,7 +31,7 @@ const getProjectsByClientId = async (req, res) => {
 
 const getAllProjects = async (req, res) => {
     const projects = await Project.find()
-        .populate('clientId'); // This will also include company name from client
+        .populate('clientId').sort({createdAt:-1}); // This will also include company name from client
 
     res.send(projects);
 };

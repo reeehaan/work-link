@@ -1,6 +1,7 @@
-import './App.css'
+import './App.css';
 import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import PropTypes from 'prop-types';
 
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
@@ -14,7 +15,6 @@ import ProtectedRoute from './common/ProtectedRoute';
 
 import FreelancerProfile from './Components/Profile/FreelancerProfile';
 
-
 import ProjectTitle from './Components/PostProject/ProjectTitle';
 import ProjectSkill from './Components/PostProject/ProjectSkill';
 import ProjectScope from './Components/PostProject/ProjectScope';
@@ -23,13 +23,9 @@ import ProjectDescription from './Components/PostProject/ProjectDescription';
 import ProjectDetails from './Components/PostProject/ProjectDetails';
 import PostProjectLayout from './Components/PostProject/PostProjectLayout';
 
+import Projects from './Pages/Freelancer/Projects';
 import ProjectList from './Components/Projects/ProjectList';
 import ProjectView from "./Components/Projects/ProjectView";
-
-
-
-
-
 
 const customTheme = createTheme({
   palette: {
@@ -41,129 +37,72 @@ const customTheme = createTheme({
     }
   },
   components: {
-    MuiButton:{
-      styleOverrides:{
-        root:{
+    MuiButton: {
+      styleOverrides: {
+        root: {
           fontWeight: 700
         }
-      }
-    }
-  },
-  MuiContainer: {
-    styleOverrides: {
-      root: {
-        display: 'flex',
-        flexDirection: 'column',
-        boxShadow: 'none',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100%',
-        height: '100%',
-      }
-    }
-  },
-  MuiBox: {
-    styleOverrides: {
-      root: {
-        display: 'flex',
-        boxShadow: 'none',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100%',
-      }
-    }
-  },MuiGrid: {
-    styleOverrides: {
-      root: {
-        display: 'flex',
-        boxShadow: 'none',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }
-    }
-  },
-  MuiPaper: {
-    styleOverrides: {
-      root: {
-        display: 'flex',
-        boxShadow: 'none',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
       }
     }
   }
 });
 
-function App() {
-const Layout = ({role}) =>{
-  return(
-  <>
-  <Navbar userType={role}/>
-  <Outlet />
-  <Footer/>
-  </>
-  ); 
+const Layout = ({ role }) => {
+  return (
+    <>
+      <Navbar userType={role} />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 
-  
-  
-}
-  return(
+// PropTypes validation should be outside of the `App` function
+Layout.propTypes = {
+  role: PropTypes.string.isRequired,  // Ensures 'role' is a required string
+};
+
+function App() {
+  return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
-    
-    
-    
-    <Router>
-      <Routes>
-        <Route path="/"element={<MainContent/>}> </Route>
-        <Route path="/signup"element={<RoleSelection/>}> </Route>
-        <Route path="/signup-form"element={<SignupForm/>}> </Route>
-        <Route path="/login-form"element={<LoginForm/>}> </Route>
-        
-        
-        <Route path="/project-title"element={<ProjectTitle/>}> </Route>
-        <Route path="/project-skill"element={<ProjectSkill/>}> </Route>
-        <Route path="/project-scope"element={<ProjectScope/>}> </Route>
-        <Route path="/project-budget"element={<ProjectBudget/>}> </Route>
-        <Route path="/project-description"element={<ProjectDescription/>}> </Route>
-        <Route path="/project-details"element={<ProjectDetails/>}> </Route>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="/signup" element={<RoleSelection />} />
+          <Route path="/signup-form" element={<SignupForm />} />
+          <Route path="/login-form" element={<LoginForm />} />
 
-        
-        
-        
+          <Route path="/project-title" element={<ProjectTitle />} />
+          <Route path="/project-skill" element={<ProjectSkill />} />
+          <Route path="/project-scope" element={<ProjectScope />} />
+          <Route path="/project-budget" element={<ProjectBudget />} />
+          <Route path="/project-description" element={<ProjectDescription />} />
+          <Route path="/project-details" element={<ProjectDetails />} />
 
-
-
-      {/* Protected Route Freelancer*/}
-        <Route element={<ProtectedRoute allowedRole="freelancer" />}>
-          <Route element={<Layout role={"freelancer"}/>}>
-            <Route path="/freelancer" element={<Freelancer />} />
-            
-            <Route path="/project" element={<ProjectList/>} />
-            <Route path="/project/:projectId" element={<ProjectView />} />
-            
-            <Route path="/freelancer/profile" element={<FreelancerProfile />} />
-           
-
+          {/* Protected Route Freelancer*/}
+          <Route element={<ProtectedRoute allowedRole="freelancer" />}>
+            <Route element={<Layout role={"freelancer"} />}>
+              <Route path="/freelancer" element={<Freelancer />} />
+              <Route path="/project/all" element={<Projects />} />
+              <Route path="/project" element={<ProjectList />} />
+              <Route path="/project/:projectId" element={<ProjectView />} />
+              <Route path="/freelancer/profile" element={<FreelancerProfile />} />
+            </Route>
           </Route>
-        </Route>
 
-      {/* Protected Route Client*/}
-      <Route element={<ProtectedRoute allowedRole="client" />}>
-      <Route path="/post-project-layout"element={<PostProjectLayout/>}> </Route>
-          <Route element={<Layout role={"client"}/>}>
-            <Route path="/client"element={<Client/>} />
-            
+          {/* Protected Route Client*/}
+          <Route element={<ProtectedRoute allowedRole="client" />}>
+            <Route path="/post-project-layout" element={<PostProjectLayout />} />
+            <Route element={<Layout role={"client"} />}>
+              <Route path="/client" element={<Client />} />
+            </Route>
           </Route>
-        </Route>
 
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
     </ThemeProvider>
-    
   );
 }
 
-export default App
+export default App;
