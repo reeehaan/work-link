@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { AppBar, Toolbar, Button, TextField, Box, Typography, Menu, MenuItem, Avatar, IconButton } from '@mui/material';
 import { ArrowDropDown } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { jwtDecode } from 'jwt-decode';
+import axios from "axios";
+
 
 export default function Navbar({ userType }) {
   const navigate = useNavigate();
+  
+
 
   const [anchorElWork, setAnchorElWork] = useState(null);
   const [anchorElDeliver, setAnchorElDeliver] = useState(null);
@@ -28,8 +33,6 @@ export default function Navbar({ userType }) {
   const handleMenuClose = (setter) => () => {
     setter(null);
   };
-
-  
 
   const freelancerLinks = () => (
     <Box sx={{ display: 'flex', gap: 2 }}>
@@ -133,42 +136,73 @@ export default function Navbar({ userType }) {
     setAnchorElPostJob(null);
   }
 
+    //To display user's name in the navbar
+    const [userProfile, setUserProfile] = useState({ firstName: '', lastName: '' });
+
+    const fetchUserProfileName = async () => {
+      try {
+        const token = localStorage.getItem('accessToken'); // Assuming JWT is stored in localStorage as 'accessToken'
+        if (token) {
+          const decodedToken = jwtDecode(token);
+          const userId = decodedToken._id; // Adjust this depending on the structure of your JWT payload
+          const response = await axios.get(`http://localhost:3000/api/user/${userId}`);
+          console.log(response);
+          const { firstName, lastName } = response.data;
+          setUserProfile({ firstName, lastName }); // Update the userProfile state with the fetched data
+        } else {
+          console.error('Token not found in localStorage');
+        }
+      } catch (error) {
+        console.error('Failed to fetch user profile:', error);
+      }
+    };
+
+    useEffect(() => {
+       fetchUserProfileName();
+    }, []);
+  
+
+  
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: '#ffffff', color: '#000000' }}>
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          <a href="/" style={{ textDecoration: 'none', color: '#000000', fontWeight: 'bold'}}>
-            Work<span style={{ color: '#00b3ff' }}>Link</span>
-          </a>
-        </Typography>
+      <AppBar position="sticky" sx={{ backgroundColor: '#ffffff', color: '#000000' }}>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            <a href="/" style={{ textDecoration: 'none', color: '#000000', fontWeight: 'bold' }}>
+              Work<span style={{ color: '#00b3ff' }}>Link</span>
+            </a>
+          </Typography>
+  
+          {userType === 'freelancer' ? freelancerLinks() : userType === 'client' ? clientLinks() : null}
+  
+          <TextField
+            variant="outlined"
+            size="small"
+            sx={{ backgroundColor: 'white', borderRadius: '4px', marginRight: 2 }}
+            placeholder="Search"
+          />
 
-        {userType === 'freelancer' ? freelancerLinks() : userType === 'client' ? clientLinks() : null}
-
-        <TextField
-          variant="outlined"
-          size="small"
-          sx={{ backgroundColor: 'white', borderRadius: '4px', marginRight: 2 }}
-          placeholder="Search"
-        />
-
-        <div>
-          <IconButton onClick={handleMenuClick(setAnchorElProfile)}>
-            <Avatar alt="" src="/profile.jpg" />
-          </IconButton>
-          <Menu
-            anchorEl={anchorElProfile}
-            open={openProfile}
-            onClose={handleMenuClose(setAnchorElProfile)}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-          >
-            <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/">Profile</MenuItem>
-            <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
-          </Menu>
-        </div>
-      </Toolbar>
-    </AppBar>
-  );
+          <Typography variant="body1" sx={{ marginRight: 2 }}>
+            {userProfile.firstName} {userProfile.lastName}
+          </Typography>
+         
+          <div>
+            <IconButton onClick={handleMenuClick(setAnchorElProfile)}>
+              <Avatar alt="" src="/profile.jpg" />
+            </IconButton>
+            <Menu
+              anchorEl={anchorElProfile}
+              open={openProfile}
+              onClose={handleMenuClose(setAnchorElProfile)}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            >
+              <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/">Profile</MenuItem>
+              <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
+            </Menu>
+          </div>
+        </Toolbar>
+      </AppBar>
+    );
 }
 
 Navbar.propTypes = {

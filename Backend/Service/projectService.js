@@ -56,6 +56,8 @@ const getRecentProjects = async (req, res) => {
     res.send(projects);
 };
 
+
+
 module.exports = {
     createProject,
     getProjectsByClientId,

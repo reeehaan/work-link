@@ -120,7 +120,7 @@ const getUserById = async (req, res) => {
       }
       // If the user is a client, fetch their profile details
       if (user.role === "client") {
-        const ClientProfile = await ClientModel.findOne({ user: user._id });
+        const ClientProfile = await ClientModel.findOne({ userId: user._id });
 
         if (ClientProfile) {
             response.ClientProfile = {

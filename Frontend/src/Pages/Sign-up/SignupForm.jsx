@@ -122,7 +122,7 @@ function SignupForm() {
     sx={{
       display: 'flex',
       flexDirection: { xs: 'column', md: 'row' },
-      width: '90%',
+      width: '100%',
       boxShadow: 5,
       borderRadius: 3,
       overflow: 'hidden',

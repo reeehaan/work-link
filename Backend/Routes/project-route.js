@@ -7,8 +7,10 @@ const Project = require('../Service/projectService')
 // Create project (only clients can create)
 router.post('/', verifyToken, verifyClientRole, Project.createProject);
 
-// Get projects by client ID (accessible to all authenticated users)
-router.get('/client/:clientId', verifyToken, Project.getProjectsByClientId);
+// Get all projects by client ID (accessible to all authenticated users) 
+//use this to fetch projects that are relevent to a client
+router.get('/client/:clientId',verifyToken, Project.getProjectsByClientId);
+
 
 // Get all projects (accessible to all authenticated users)
 router.get('/all',  Project.getAllProjects);

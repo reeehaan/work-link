@@ -10,6 +10,7 @@ require("./Database/mongodb.js");
 //import routes
 const users = require("./Routes/user-route");
 const project = require("./Routes/project-route")
+const freelancer = require("./Routes/freelancer-route")
 
 
 //middleware
@@ -21,6 +22,7 @@ app.use(
 //Routes Middlewares
  app.use("/api/user",users);
  app.use("/api/project", project)
+ app.use("/api/freelancer", freelancer)
 
 
 const port = process.env.PORT;
