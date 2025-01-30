@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import PropTypes from 'prop-types';
 
+
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import RoleSelection from './Pages/Sign-up/RoleSelection';
@@ -26,6 +27,8 @@ import PostProjectLayout from './Components/PostProject/PostProjectLayout';
 import Projects from './Pages/Freelancer/Projects';
 import ProjectList from './Components/Projects/ProjectList';
 import ProjectView from "./Components/Projects/ProjectView";
+import SaveProject from './Components/Projects/SaveProject';
+
 
 const customTheme = createTheme({
   palette: {
@@ -62,6 +65,8 @@ Layout.propTypes = {
   role: PropTypes.string.isRequired,  // Ensures 'role' is a required string
 };
 
+
+
 function App() {
   return (
     <ThemeProvider theme={customTheme}>
@@ -88,6 +93,7 @@ function App() {
               <Route path="/project" element={<ProjectList />} />
               <Route path="/project/:projectId" element={<ProjectView />} />
               <Route path="/freelancer/profile" element={<FreelancerProfile />} />
+              <Route path="/freelancer/save-project" element={<SaveProject/>} />
             </Route>
           </Route>
 

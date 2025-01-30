@@ -1,0 +1,95 @@
+.projectList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    flex-grow: 1;
+    box-sizing: border-box;
+  }
+  
+  .projectsContainer {
+    display: flex;
+    flex-direction: column; 
+    gap: 25px;
+    overflow-y: auto; 
+  }
+  
+  .projectCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Full width for each card to span horizontally */
+    height: auto; /* Allow height to adjust based on content */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .projectCard:hover {
+    transform: translateY(-5px);
+    background-color: #eaf2f4;
+  }
+  
+  .projectTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: black;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .projectCard:hover .projectTitle {
+    color: #007bff;
+  }
+  
+  .projectDescription {
+    font-size: 1rem;
+    color: #555;
+    margin: 0.5em 0;
+  }
+  
+  .skillsContainer {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  
+  .skillTab {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+  }
+  
+  .skillTab:hover {
+    background-color: #0056b3;
+  }
+  
+  .loader,
+  .error,
+  .noProjects {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  
+  .footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  

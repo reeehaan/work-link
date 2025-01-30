@@ -181,6 +181,39 @@
   color: #f0ad4e;
 }
 
+.successMessage {
+  position: relative;
+  background-color: #2989f0; /* Green color with transparency */
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow for better contrast */
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+  
+  /* Blur effect */
+  backdrop-filter: blur(10px); /* Creates the blur effect on the background */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+}
+
+.successMessage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1); /* Slight overlay to enhance the blur effect */
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.successMessage i {
+  margin-right: 10px; /* Adds some space between the icon and text */
+}
 
 @keyframes slideIn {
   from {

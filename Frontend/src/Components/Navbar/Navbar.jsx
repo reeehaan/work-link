@@ -47,8 +47,8 @@ export default function Navbar({ userType }) {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
-          <MenuItem onClick={handleMenuClose(setAnchorElWork)} href="/findFreelancer">Find Work</MenuItem>
-          <MenuItem onClick={handleMenuClose(setAnchorElWork)} href="/savedJobs">Saved Projects</MenuItem>
+          <MenuItem onClick={() => handleFindWorkClick()} href="/project/all">Find Work</MenuItem>
+          <MenuItem onClick={() => handleSaveProjectClick()} href="/savedJobs">Saved Projects</MenuItem>
           <MenuItem onClick={handleMenuClose(setAnchorElWork)} href="/proposals">Proposals</MenuItem>
         </Menu>
       </div>
@@ -136,8 +136,23 @@ export default function Navbar({ userType }) {
     setAnchorElPostJob(null);
   }
 
+  const handleSaveProjectClick = () =>{
+    navigate('/freelancer/save-project');
+    setAnchorElPostJob(null);
+  }
+  const handleProfileClick = () => {
+    navigate('/freelancer/profile');
+    setAnchorElPostJob(null); 
+  };
+
+  const handleFindWorkClick = () => {
+    navigate('/project/all');
+    setAnchorElPostJob(null); 
+  };
+
     //To display user's name in the navbar
     const [userProfile, setUserProfile] = useState({ firstName: '', lastName: '' });
+
 
     const fetchUserProfileName = async () => {
       try {
@@ -147,8 +162,8 @@ export default function Navbar({ userType }) {
           const userId = decodedToken._id; // Adjust this depending on the structure of your JWT payload
           const response = await axios.get(`http://localhost:3000/api/user/${userId}`);
           console.log(response);
-          const { firstName, lastName } = response.data;
-          setUserProfile({ firstName, lastName }); // Update the userProfile state with the fetched data
+          const { firstName, lastName ,image} = response.data;
+          setUserProfile({ firstName, lastName , image}); // Update the userProfile state with the fetched data
         } else {
           console.error('Token not found in localStorage');
         }
@@ -181,13 +196,13 @@ export default function Navbar({ userType }) {
             placeholder="Search"
           />
 
-          <Typography variant="body1" sx={{ marginRight: 2 }}>
+          <Typography variant="body1" sx={{ marginRight: 2 , fontWeight:400}}>
             {userProfile.firstName} {userProfile.lastName}
           </Typography>
          
           <div>
             <IconButton onClick={handleMenuClick(setAnchorElProfile)}>
-              <Avatar alt="" src="/profile.jpg" />
+              <Avatar alt="" src={userProfile.image} />
             </IconButton>
             <Menu
               anchorEl={anchorElProfile}
@@ -196,7 +211,7 @@ export default function Navbar({ userType }) {
               anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
               transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
-              <MenuItem onClick={handleMenuClose(setAnchorElProfile)} href="/">Profile</MenuItem>
+              <MenuItem onClick={() =>handleProfileClick()} href="/">Profile</MenuItem>
               <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
             </Menu>
           </div>
