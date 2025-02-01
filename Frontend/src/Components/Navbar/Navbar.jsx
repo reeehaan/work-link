@@ -146,7 +146,7 @@ export default function Navbar({ userType }) {
   };
 
   const handleFindWorkClick = () => {
-    navigate('/project/all');
+    navigate('/freelancer');
     setAnchorElPostJob(null); 
   };
 

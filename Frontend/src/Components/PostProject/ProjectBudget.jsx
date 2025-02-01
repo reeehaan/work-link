@@ -29,7 +29,7 @@ const ProjectBudget = ({ budget, setBudget }) => {
                 <h4>What is the best cost estimate for your project?</h4>
                 <p> You can negotiate this cost and create milestones when you chat with your freelancer.</p>
 
-                <input type="text" placeholder="price" id="input-fixed-price" value={budget} onChange={getBudget}/>
+                <input type="text" placeholder="$ - price" id="input-fixed-price" value={budget} onChange={getBudget}/>
               </div>
 
 
