@@ -140,10 +140,12 @@ export default function Navbar({ userType }) {
     navigate('/freelancer/save-project');
     setAnchorElPostJob(null);
   }
-  const handleProfileClick = () => {
-    navigate('/freelancer/profile');
-    setAnchorElPostJob(null); 
-  };
+
+  const handleProfileClick = () =>{
+    navigate('/client/profile');
+    setAnchorElPostJob(null);
+  }
+  
 
   const handleFindWorkClick = () => {
     navigate('/freelancer');
@@ -162,8 +164,9 @@ export default function Navbar({ userType }) {
           const userId = decodedToken._id; // Adjust this depending on the structure of your JWT payload
           const response = await axios.get(`http://localhost:3000/api/user/${userId}`);
           console.log(response);
-          const { firstName, lastName ,image} = response.data;
-          setUserProfile({ firstName, lastName , image}); // Update the userProfile state with the fetched data
+          const { firstName, lastName, image, } = response.data;
+          setUserProfile({ firstName, lastName, image }); // Update the userProfile state with the fetched data
+          // Call the function to handle profile cli
         } else {
           console.error('Token not found in localStorage');
         }
@@ -171,10 +174,11 @@ export default function Navbar({ userType }) {
         console.error('Failed to fetch user profile:', error);
       }
     };
-
+    
     useEffect(() => {
-       fetchUserProfileName();
+      fetchUserProfileName();
     }, []);
+    
   
 
   
@@ -211,7 +215,7 @@ export default function Navbar({ userType }) {
               anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
               transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
-              <MenuItem onClick={() =>handleProfileClick()} href="/">Profile</MenuItem>
+              <MenuItem onClick={() => handleProfileClick()} href="/">Profile</MenuItem>
               <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
             </Menu>
           </div>

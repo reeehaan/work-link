@@ -15,6 +15,7 @@ import Freelancer from './Pages/Freelancer';
 import ProtectedRoute from './common/ProtectedRoute';
 
 import FreelancerProfile from './Components/Profile/FreelancerProfile';
+import ClientProfile from './Components/Profile/ClientProfile';
 
 import ProjectTitle from './Components/PostProject/ProjectTitle';
 import ProjectSkill from './Components/PostProject/ProjectSkill';
@@ -28,6 +29,8 @@ import Projects from './Pages/Freelancer/Projects';
 import ProjectList from './Components/Projects/ProjectList';
 import ProjectView from "./Components/Projects/ProjectView";
 import SaveProject from './Components/Projects/SaveProject';
+
+import PostedProjects from './Pages/Client/postedProjects';
 
 
 const customTheme = createTheme({
@@ -102,6 +105,8 @@ function App() {
             <Route path="/post-project-layout" element={<PostProjectLayout />} />
             <Route element={<Layout role={"client"} />}>
               <Route path="/client" element={<Client />} />
+              <Route path="/client/profile" element={<ClientProfile />} />
+              <Route path="/client/posted-project" element={<PostedProjects />} />
             </Route>
           </Route>
 

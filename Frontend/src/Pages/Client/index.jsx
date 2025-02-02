@@ -8,6 +8,10 @@ function Index() {
     navigate("/post-project-layout");
   };
 
+  const handlePostedProjectClick = () => {
+    navigate("/client/posted-project");
+  };
+
 
   return (
     <div className={styles.container}>
@@ -24,10 +28,17 @@ function Index() {
             Get Started
           </button> 
         </div>
+
         <div className={styles.card}>
           <h3>📊 Track Milestones</h3>
           <p>Stay on top of your projects progress with detailed milestone tracking.</p>
           <button className={styles.button}>View Projects</button>
+        </div>
+
+        <div className={styles.card}>
+          <h3> View Posted Projects</h3>
+          <p>Monitor your projects effortlessly with real-time updates on milestones, deadlines, and deliverables.</p>
+          <button className={styles.button} onClick={handlePostedProjectClick}>View Projects</button>
         </div>
       </div>
     </div>

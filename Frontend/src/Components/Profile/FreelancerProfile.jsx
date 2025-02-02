@@ -55,12 +55,13 @@ const FreelancerProfile = () => {
 
         setUserProfile({ ...userDetails, freelancerProfile });
         setUpdatedProfile({
-          email: userDetails.email,
+          
           image: freelancerProfile.image,
           title: freelancerProfile.title,
           bio: freelancerProfile.bio,
           skills: freelancerProfile.skills,
-          portfolio: freelancerProfile.portfolio
+          portfolio: freelancerProfile.portfolio,
+          email:freelancerProfile.email
         });
       } else {
         console.error('Token not found in localStorage');
@@ -171,25 +172,25 @@ const FreelancerProfile = () => {
     return <div>Loading...</div>;
   }
 
-  const { freelancerProfile, firstName, lastName,image, email } = userProfile;
-  const { title, bio, skills, portfolio } = freelancerProfile;
+  const { freelancerProfile, firstName, lastName,image } = userProfile;
+  const { title, bio, skills, portfolio, email } = freelancerProfile;
 
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileInfo}>
-      <div className={styles.profileLeft}>
-  <ProfileImage
-    editMode={editMode}
-    image={updatedProfile.image ?? image}
-    firstName={firstName}
-    lastName={lastName}
-    onImageUpdate={handleImageUpdate}
-  />
-  <div className={styles.profileName}>
-    <h2>{firstName} {lastName}</h2>
-    <p>{title}</p>
-  </div>
-</div>
+        <div className={styles.profileLeft}>
+          <ProfileImage
+            editMode={editMode}
+            image={updatedProfile.image ?? image}
+            firstName={firstName}
+            lastName={lastName}
+            onImageUpdate={handleImageUpdate}
+          />
+          <div className={styles.profileName}>
+            <h2>{firstName} {lastName}</h2>
+            <p>{title}</p>
+          </div>
+        </div>
 
         <div className={styles.profileRight}>
           {editMode ? (
@@ -255,70 +256,70 @@ const FreelancerProfile = () => {
               </div>
 
               <div className={styles.portfolioForm}>
-    <h3>Portfolio Projects</h3>
-    {updatedProfile.portfolio.map((project, index) => (
-      <div key={index} className={styles.portfolioFormItem}>
-        <input
-          type="text"
-          value={project.projectTitle || ''}
-          onChange={(e) => {
-            const newPortfolio = [...updatedProfile.portfolio];
-            newPortfolio[index] = {
-              ...newPortfolio[index],
-              projectTitle: e.target.value
-            };
-            setUpdatedProfile({
-              ...updatedProfile,
-              portfolio: newPortfolio
-            });
-          }}
-          placeholder="Project Title"
-        />
-        <input
-          type="text"
-          value={project.projectImage || ''}
-          onChange={(e) => {
-            const newPortfolio = [...updatedProfile.portfolio];
-            newPortfolio[index] = {
-              ...newPortfolio[index],
-              projectImage: e.target.value
-            };
-            setUpdatedProfile({
-              ...updatedProfile,
-              portfolio: newPortfolio
-            });
-          }}
-          placeholder="Image URL"
-        />
-        <button 
-          onClick={() => {
-            const newPortfolio = updatedProfile.portfolio.filter((_, i) => i !== index);
-            setUpdatedProfile({
-              ...updatedProfile,
-              portfolio: newPortfolio
-            });
-          }}
-          className={styles.removeButton}
-        >
-          Remove
-        </button>
-      </div>
-    ))}
-    <button 
-      onClick={() => {
-        setUpdatedProfile({
-          ...updatedProfile,
-          portfolio: [
-            ...updatedProfile.portfolio, 
-            { projectTitle: '', projectImage: '' }
-          ]
-        });
-      }}
-      className={styles.addButton}
-    >
-      Add Project
-    </button>
-  </div>
+                <h3>Portfolio Projects</h3>
+                {updatedProfile.portfolio.map((project, index) => (
+                  <div key={index} className={styles.portfolioFormItem}>
+                    <input
+                      type="text"
+                      value={project.projectTitle || ''}
+                      onChange={(e) => {
+                        const newPortfolio = [...updatedProfile.portfolio];
+                        newPortfolio[index] = {
+                          ...newPortfolio[index],
+                          projectTitle: e.target.value
+                        };
+                        setUpdatedProfile({
+                          ...updatedProfile,
+                          portfolio: newPortfolio
+                        });
+                      }}
+                      placeholder="Project Title"
+                    />
+                    <input
+                      type="text"
+                      value={project.projectImage || ''}
+                      onChange={(e) => {
+                        const newPortfolio = [...updatedProfile.portfolio];
+                        newPortfolio[index] = {
+                          ...newPortfolio[index],
+                          projectImage: e.target.value
+                        };
+                        setUpdatedProfile({
+                          ...updatedProfile,
+                          portfolio: newPortfolio
+                        });
+                      }}
+                      placeholder="Image URL"
+                    />
+                    <button 
+                      onClick={() => {
+                        const newPortfolio = updatedProfile.portfolio.filter((_, i) => i !== index);
+                        setUpdatedProfile({
+                          ...updatedProfile,
+                          portfolio: newPortfolio
+                        });
+                      }}
+                      className={styles.removeButton}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                <button 
+                  onClick={() => {
+                    setUpdatedProfile({
+                      ...updatedProfile,
+                      portfolio: [
+                        ...updatedProfile.portfolio, 
+                        { projectTitle: '', projectImage: '' }
+                      ]
+                    });
+                  }}
+                  className={styles.addButton}
+                >
+                  Add Project
+                </button>
+              </div>
             </div>
           ) : (
             <div>
@@ -357,10 +358,10 @@ const FreelancerProfile = () => {
           )}
         </div>
       </div>
-      <button className={styles.actionButton} onClick={editMode ? handleSaveChanges : () => setEditMode(true)}>
-  {editMode ? "Save Changes" : "Edit Profile"}
-</button>
-    </div>
+        <button className={styles.actionButton} onClick={editMode ? handleSaveChanges : () => setEditMode(true)}>
+          {editMode ? "Save Changes" : "Edit Profile"}
+        </button>
+      </div>
   );
 };
 

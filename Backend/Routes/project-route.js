@@ -9,7 +9,7 @@ router.post('/', verifyToken, verifyClientRole, Project.createProject);
 
 // Get all projects by client ID (accessible to all authenticated users) 
 //use this to fetch projects that are relevent to a client
-router.get('/client/:clientId',verifyToken, Project.getProjectsByClientId);
+router.get('/',verifyToken ,verifyClientRole, Project.getProjectsByClientId);
 
 
 // Get all projects (accessible to all authenticated users)

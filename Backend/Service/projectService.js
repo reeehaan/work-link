@@ -25,8 +25,16 @@ const createProject = async (req, res) => {
 };
 
 const getProjectsByClientId = async (req, res) => {
-    const projects = await Project.find({ clientId: req.params.clientId });
-    res.send(projects);
+    // Get client record using user ID from JWT token
+    const client = await Client.findOne({ userId: req.user._id});
+    
+    if(client){
+        const projects = await Project.find({ clientId: client._id})
+        res.status(201).send(projects);
+    }else{
+        res.status(404).send("There are not projects related to this client")
+    }
+    
 };
 
 const getAllProjects = async (req, res) => {
