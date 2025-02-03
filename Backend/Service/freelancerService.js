@@ -56,7 +56,7 @@ const updateFreelancerProfile = async (req, res) => {
     try {
         const { userId } = req.params;
 
-        // First update the User model for image and email
+        // First update the User model for image 
         const user = await User.findByIdAndUpdate(
             userId,
             { 

@@ -32,7 +32,7 @@ function Index() {
         <div className={styles.card}>
           <h3>📊 Track Milestones</h3>
           <p>Stay on top of your projects progress with detailed milestone tracking.</p>
-          <button className={styles.button}>View Projects</button>
+          <button className={styles.button}>View Milestones</button>
         </div>
 
         <div className={styles.card}>

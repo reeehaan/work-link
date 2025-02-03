@@ -115,7 +115,7 @@ const SaveProject = () => {
           ))}
         </div>
       ) : (
-        <p className={styles.noProjects}>No recent projects available.</p>
+        <p className={styles.noProjects}>No saved projects available.</p>
       )}
     </div>
   );

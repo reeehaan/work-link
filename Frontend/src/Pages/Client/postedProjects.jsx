@@ -80,7 +80,7 @@ const PostedProjects = () => {
             <p><strong>Duration:</strong> {project.scope.projectDuration}</p>
             <p><strong>Description:</strong> {project.description}</p>
             <div className={styles.skills}>
-              <p>Skills Required:</p>
+            <p><strong>Skills:</strong></p> 
               <div className={styles.skillList}>
                 {project.skills.map((skill, index) => (
                   <span key={index} className={styles.skillBadge}>{skill}</span>
@@ -115,7 +115,7 @@ const PostedProjects = () => {
               placeholder="Enter project description"
             />
 
-            <label>Skills:</label>
+            <label><strong>Skills:</strong></label>
             <input type="text" placeholder="Search skills..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             
             {/* Show skills dropdown only if searchTerm is entered */}

@@ -142,7 +142,7 @@ export default function Navbar({ userType }) {
   }
 
   const handleProfileClick = () =>{
-    navigate('/client/profile');
+    navigate('/freelancer/profile');
     setAnchorElPostJob(null);
   }
   
