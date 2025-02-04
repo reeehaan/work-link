@@ -1,17 +1,16 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-const User = require("../Service/userService");
+const User = require('../Service/userService');
 
 //Add Users To Database
-router.post("/register", User.register);
+router.post('/register', User.register);
 
 //Login Users
-router.post("/login", User.login);
+router.post('/login', User.login);
 
 //Get user by id
-router.get("/:id",User.getUserById);
+router.get('/:id', User.getUserById);
 
-
+router.post('/reset-password', User.resetPassword);
 
 module.exports = router;
-
