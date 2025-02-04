@@ -69,7 +69,7 @@ export default function Navbar({ userType }) {
       </div>
 
       <Button color="inherit" href="/refund" sx={{ color: '#007bff' }}>Refund Policy</Button>
-      <Button color="inherit" href="/messages" sx={{ color: '#007bff' }}>Messages</Button>
+      <Button color="inherit" onClick={() => handleMessageClick()} sx={{ color: '#007bff' }}>Messages</Button>
     </Box>
   );
 
@@ -122,7 +122,7 @@ export default function Navbar({ userType }) {
         </Menu>
       </div>
 
-      <Button color="inherit" href="/messages" sx={{ color: '#007bff' }}>Messages</Button>
+      <Button color="inherit" onClick={() => handleMessageClick()}  sx={{ color: '#007bff' }}>Messages</Button>
     </Box>
   );
 //logout 
@@ -133,6 +133,11 @@ export default function Navbar({ userType }) {
 
   const handlePostProject = () =>{
     navigate('/post-project-layout');
+    setAnchorElPostJob(null);
+  }
+
+  const handleMessageClick = () =>{
+    navigate('/live-chat');
     setAnchorElPostJob(null);
   }
 
@@ -187,7 +192,7 @@ export default function Navbar({ userType }) {
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             <a href="/" style={{ textDecoration: 'none', color: '#000000', fontWeight: 'bold' }}>
-              Work<span style={{ color: '#00b3ff' }}>Link</span>
+              Work<span style={{ color: 'rgb(0, 123, 255)' }}>Link</span>
             </a>
           </Typography>
   

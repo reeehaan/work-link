@@ -17,22 +17,29 @@ const PostedProjects = () => {
 
   const fetchProjects = async () => {
     try {
-      const apiUrl = "http://localhost:3000/api/project";
-      const accessToken = localStorage.getItem("accessToken");
-      const config = { headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` } };
-      const response = await axios.get(apiUrl, config);
+    const apiUrl = "http://localhost:3000/api/project";
+    const accessToken = localStorage.getItem("accessToken");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    const response = await axios.get(apiUrl, config);
       setProjects(response.data);
     } catch (error) {
       console.error("Error fetching projects:", error);
     }
   };
 
+  const deleteProjectByProjectId = async () =>{
+    
+  }
+
   const fetchSkills = async () => {
     try {
       const response = await fetch("/skills.json");
-      if (!response.ok) {
-        throw new Error(`Failed to fetch skills: ${response.statusText}`);
-      }
+      if (!response.ok) throw new Error(`Failed to fetch skills: ${response.statusText}`);
       const data = await response.json();
       setAllSkills(data.skills || []);
     } catch (error) {
@@ -53,7 +60,10 @@ const PostedProjects = () => {
 
   const handleScopeChange = (e) => {
     const { name, value } = e.target;
-    setEditedProject((prev) => ({ ...prev, scope: { ...prev.scope, [name]: value } }));
+    setEditedProject((prev) => ({
+      ...prev,
+      scope: { ...prev.scope, [name]: value },
+    }));
   };
 
   const handleAddSkill = (skill) => {
@@ -78,9 +88,10 @@ const PostedProjects = () => {
             <h3 className={styles.projectTitle}>{project.title}</h3>
             <p><strong>Type:</strong> {project.scope.projectType}</p>
             <p><strong>Duration:</strong> {project.scope.projectDuration}</p>
+            <p><strong>Experience:</strong> {project.scope.experience}</p>
             <p><strong>Description:</strong> {project.description}</p>
             <div className={styles.skills}>
-            <p><strong>Skills:</strong></p> 
+              <p><strong>Skills:</strong></p>
               <div className={styles.skillList}>
                 {project.skills.map((skill, index) => (
                   <span key={index} className={styles.skillBadge}>{skill}</span>
@@ -89,64 +100,140 @@ const PostedProjects = () => {
             </div>
             <p className={styles.budget}>Budget: $ {project.budget}</p>
           </div>
-          
         ))}
       </div>
 
-      {/* Edit Project Modal */}
       {modalOpen && selectedProject && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <h3>Edit Project</h3>
-            <label>Title:</label>
-            <input type="text" name="title" value={editedProject.title} onChange={handleInputChange} />
-            
-            <label>Project Type:</label>
-            <input type="text" name="projectType" value={editedProject.scope.projectType} onChange={handleScopeChange} />
-            
-            <label>Duration:</label>
-            <input type="text" name="projectDuration" value={editedProject.scope.projectDuration} onChange={handleScopeChange} />
+  <div className={styles.modal}>
+    <div className={styles.modalContent}>
+      <h3>Edit Project</h3>
 
-            <label>Description:</label>
-            <textarea
-              name="description"
-              value={editedProject.description || ""}
-              onChange={handleInputChange}
-              placeholder="Enter project description"
-            />
+      <div className={styles.modalGrid}>
+        {/* Left Section - Title & Description */}
+        <div className={styles.leftSection}>
+          <label>Title</label>
+          <input
+            type="text"
+            name="title"
+            value={editedProject.title}
+            onChange={handleInputChange}
+            className={styles.titleInput}
+          />
 
-            <label><strong>Skills:</strong></label>
-            <input type="text" placeholder="Search skills..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-            
-            {/* Show skills dropdown only if searchTerm is entered */}
-            {searchTerm && (
-              <div className={styles.skillDropdown}>
-                {allSkills.filter(skill => skill.toLowerCase().includes(searchTerm.toLowerCase())).map((skill) => (
+          <label>Description</label>
+          <textarea
+            name="description"
+            value={editedProject.description || ""}
+            onChange={handleInputChange}
+            placeholder="Enter project description"
+            className={styles.descriptionTextarea}
+          />
+        </div>
+
+        {/* Right Section - Scope & Skills */}
+        <div className={styles.rightSection}>
+          <label>Project Type</label>
+          <div className={styles.radioGroup}>
+            {["small", "medium", "large"].map((type) => (
+              <label key={type}>
+                <input
+                  type="radio"
+                  name="projectType"
+                  value={type}
+                  checked={editedProject.scope.projectType === type}
+                  onChange={handleScopeChange}
+                />
+                {type.charAt(0).toUpperCase() + type.slice(1)}
+              </label>
+            ))}
+          </div>
+
+          <label>Project Duration</label>
+          <div className={styles.radioGroup}>
+            {["more than 6 months", "3 - 6 months", "1 - 3 months"].map((duration) => (
+              <label key={duration}>
+                <input
+                  type="radio"
+                  name="projectDuration"
+                  value={duration}
+                  checked={editedProject.scope.projectDuration === duration}
+                  onChange={handleScopeChange}
+                />
+                {duration}
+              </label>
+            ))}
+          </div>
+
+          <label>Project Experience</label>
+          <div className={styles.radioGroup}>
+            {["beginner", "intermediate", "expert"].map((level) => (
+              <label key={level}>
+                <input
+                  type="radio"
+                  name="experience"
+                  value={level}
+                  checked={editedProject.scope.experience === level}
+                  onChange={handleScopeChange}
+                />
+                {level.charAt(0).toUpperCase() + level.slice(1)}
+              </label>
+            ))}
+          </div>
+
+          <label>Skills</label>
+          <input
+            type="text"
+            placeholder="Search skills..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+
+          {searchTerm && (
+            <div className={styles.skillDropdown}>
+              {allSkills
+                .filter((skill) => skill.toLowerCase().includes(searchTerm.toLowerCase()))
+                .map((skill) => (
                   <div key={skill} className={styles.skillOption} onClick={() => handleAddSkill(skill)}>
-                    {skill}
+                    {skill} <span className={styles.plusIcon}>+</span>
                   </div>
                 ))}
-              </div>
-            )}
-
-            <div className={styles.selectedSkills}>
-              {editedProject.skills.map((skill, index) => (
-                <span key={index} className={styles.skillBadge} onClick={() => handleRemoveSkill(skill)}>
-                  {skill} ✖
-                </span>
-              ))}
             </div>
+          )}
 
-            <label>Budget ($):</label>
-            <input type="number" name="budget" value={editedProject.budget} onChange={handleInputChange} />
-
-            <div className={styles.modalActions}>
-              <button className={styles.saveButton}>Save Changes</button>
-              <button className={styles.cancelButton} onClick={() => setModalOpen(false)}>Cancel</button>
-            </div>
+          <div className={styles.selectedSkills}>
+            {editedProject.skills.map((skill, index) => (
+              <span key={index} className={styles.skillBadge} onClick={() => handleRemoveSkill(skill)}>
+                {skill} ✖
+              </span>
+            ))}
           </div>
+
+          <label>Budget ($)</label>
+          <input
+            type="text"
+            name="budget"
+            value={editedProject.budget}
+            onChange={handleInputChange}
+            className={styles.budgetInput}
+          />
         </div>
-      )}
+      </div>
+
+      <div className={styles.modalActions}>
+        <button className={styles.saveButton}>Save Changes</button>
+        <button className={styles.cancelButton} onClick={() => setModalOpen(false)}>Cancel</button>
+        {/* Delete Button */}
+        <button
+          className={styles.deleteButton}
+          onClick={() => handleDeleteProject(selectedProject._id)}
+        >
+          Delete Project
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

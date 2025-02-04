@@ -31,6 +31,7 @@ import ProjectView from "./Components/Projects/ProjectView";
 import SaveProject from './Components/Projects/SaveProject';
 
 import PostedProjects from './Pages/Client/postedProjects';
+//import LiveChat from './Components/LiveChat/LiveChat';
 
 
 const customTheme = createTheme({
@@ -87,6 +88,7 @@ function App() {
           <Route path="/project-budget" element={<ProjectBudget />} />
           <Route path="/project-description" element={<ProjectDescription />} />
           <Route path="/project-details" element={<ProjectDetails />} />
+          {/* <Route path="/live-chat" element={<LiveChat />} /> */}
 
           {/* Protected Route Freelancer*/}
           <Route element={<ProtectedRoute allowedRole="freelancer" />}>

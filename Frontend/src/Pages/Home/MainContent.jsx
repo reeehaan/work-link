@@ -3,6 +3,7 @@ import './MainContent.css';
 import Header from './Header';
 import Footer from './Footer';
 import SectionTwo from './SectionTwo';
+import SectionThree from './sectionThree';
 
 const  MainContent =() => {
   return (
@@ -10,6 +11,7 @@ const  MainContent =() => {
       <Header/>  
       <Section />
       <SectionTwo/>
+      <SectionThree/>
       <Footer/>
     </main>
   );

@@ -62,7 +62,32 @@ const updateClientProfile = async (req, res) =>{
     }
 };
 
+const deleteProjectByProjectId = async (req, res) => {
+    try {
+     //Get client record using user ID from JWT token
+      const client = await Client.findOne({ userId: req.user._id });
+  
+      if (client) {
+        // Check if the project exists and belongs to the logged-in client
+        const project = await Project.findOne({ _id: req.params.projectId, clientId: client._id });
+  
+        if (project) {
+          //Delete the project if it's found
+          await Project.findByIdAndDelete(req.params.projectId);
+          res.status(200).send("Project deleted successfully");
+        } else {
+          res.status(404).send("Project not found or not owned by the client");
+        }
+      } else {
+        res.status(404).send("Client not found");
+      }
+    } catch (error) {
+      console.error("Error deleting project:", error);
+      res.status(500).send("Internal server error");
+    }
+  };
+
 
 
  
-module.exports = {saveUserClient,updateClientProfile};
+module.exports = {saveUserClient,updateClientProfile,deleteProjectByProjectId};

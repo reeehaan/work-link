@@ -17,7 +17,7 @@
 }
 
 .logo span {
-  color: #00b3ff; 
+  color: rgb(0, 123, 255); 
 }
 
 .nav ul {
@@ -38,7 +38,7 @@
 }
 
 .nav ul li:hover {
-  color: #00b3ff; 
+  color: rgb(0, 123, 255); 
   font-weight: bold;
 }
 
@@ -59,12 +59,12 @@
 }
 
 .authButtons .loginBtn:hover {
-  background-color: #00b3ff;
+  background-color: rgb(0, 123, 255);
   color: #fff; 
 }
 
 .authButtons .signupBtn {
-  background-color: #00b3ff;
+  background-color: rgb(0, 123, 255);
   color: #fff;
 }
 
