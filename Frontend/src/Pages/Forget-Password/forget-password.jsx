@@ -11,20 +11,34 @@ import {
   Stack,
   Snackbar,
   Alert,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  FormHelperText,
 } from '@mui/material';
 
-const LoginForm = () => {
+const ForgotPassword = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     email: '',
-    password: '',
+    role: '',
+    newPassword: '',
+    confirmPassword: '',
   });
 
   const [toast, setToast] = useState({
     open: false,
     message: '',
-    severity: 'error', // 'error' | 'warning' | 'info' | 'success'
+    severity: 'error',
+  });
+
+  const [errors, setErrors] = useState({
+    email: '',
+    role: '',
+    newPassword: '',
+    confirmPassword: '',
   });
 
   const handleCloseToast = (event, reason) => {
@@ -33,11 +47,6 @@ const LoginForm = () => {
     }
     setToast((prev) => ({ ...prev, open: false }));
   };
-
-  const [errors, setErrors] = useState({
-    email: '',
-    password: '',
-  });
 
   const validateForm = () => {
     const newErrors = {};
@@ -48,10 +57,20 @@ const LoginForm = () => {
       newErrors.email = 'Invalid email format';
     }
 
-    if (!form.password.trim()) {
-      newErrors.password = 'Password is required';
-    } else if (form.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+    if (!form.role) {
+      newErrors.role = 'Role is required';
+    }
+
+    if (!form.newPassword) {
+      newErrors.newPassword = 'New password is required';
+    } else if (form.newPassword.length < 6) {
+      newErrors.newPassword = 'Password must be at least 6 characters';
+    }
+
+    if (!form.confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password';
+    } else if (form.newPassword !== form.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
     }
 
     setErrors(newErrors);
@@ -63,7 +82,6 @@ const LoginForm = () => {
       ...prev,
       [field]: event.target.value,
     }));
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors((prev) => ({
         ...prev,
@@ -79,8 +97,12 @@ const LoginForm = () => {
       try {
         setIsLoading(true);
         const response = await axios.post(
-          'http://localhost:3000/api/user/login',
-          form,
+          'http://localhost:3000/api/user/reset-password',
+          {
+            email: form.email,
+            role: form.role,
+            newPassword: form.newPassword,
+          },
           {
             headers: {
               'Content-Type': 'application/json',
@@ -88,14 +110,22 @@ const LoginForm = () => {
           }
         );
 
-        // Store the access token in localStorage
-        localStorage.setItem('accessToken', response.data.token);
+        setToast({
+          open: true,
+          message: 'Password reset successful',
+          severity: 'success',
+        });
 
-        // Navigate to dashboard or home page after successful login
-        navigate(`/${response.data.role}`);
+        // Redirect to login page after a delay
+        setTimeout(() => {
+          navigate('/login-form');
+        }, 3000);
       } catch (error) {
-        console.error('Login error:', error.response?.data || error.message);
-        let errorMessage = 'An error occurred during login';
+        console.error(
+          'Password reset error:',
+          error.response?.data || error.message
+        );
+        let errorMessage = 'An error occurred while resetting password';
 
         if (error.response?.data?.error) {
           errorMessage = error.response.data.error;
@@ -149,7 +179,7 @@ const LoginForm = () => {
           }}
         />
 
-        {/* Right Side (Login Form) */}
+        {/* Right Side (Reset Password Form) */}
         <Box
           sx={{
             flex: 1.2,
@@ -166,11 +196,19 @@ const LoginForm = () => {
             align='center'
             sx={{ fontWeight: 700, fontSize: 35 }}
           >
-            Login
+            Reset Password
+          </Typography>
+
+          <Typography
+            variant='body1'
+            align='center'
+            sx={{ mb: 4, color: '#666' }}
+          >
+            Enter your details to reset your password
           </Typography>
 
           <Box component='form' onSubmit={handleSubmit} noValidate>
-            <Stack spacing={4}>
+            <Stack spacing={3}>
               <TextField
                 fullWidth
                 label='Email'
@@ -184,14 +222,41 @@ const LoginForm = () => {
                 sx={{ borderRadius: 2 }}
               />
 
+              <FormControl fullWidth error={!!errors.role}>
+                <InputLabel>Role</InputLabel>
+                <Select
+                  value={form.role}
+                  label='Role'
+                  onChange={handleChange('role')}
+                  sx={{ borderRadius: 2 }}
+                >
+                  <MenuItem value='client'>Client</MenuItem>
+                  <MenuItem value='freelancer'>Freelancer</MenuItem>
+                </Select>
+                {errors.role && <FormHelperText>{errors.role}</FormHelperText>}
+              </FormControl>
+
               <TextField
                 fullWidth
-                label='Password'
+                label='New Password'
                 type='password'
-                value={form.password}
-                onChange={handleChange('password')}
-                error={!!errors.password}
-                helperText={errors.password}
+                value={form.newPassword}
+                onChange={handleChange('newPassword')}
+                error={!!errors.newPassword}
+                helperText={errors.newPassword}
+                variant='outlined'
+                size='medium'
+                sx={{ borderRadius: 2 }}
+              />
+
+              <TextField
+                fullWidth
+                label='Confirm Password'
+                type='password'
+                value={form.confirmPassword}
+                onChange={handleChange('confirmPassword')}
+                error={!!errors.confirmPassword}
+                helperText={errors.confirmPassword}
                 variant='outlined'
                 size='medium'
                 sx={{ borderRadius: 2 }}
@@ -211,9 +276,10 @@ const LoginForm = () => {
                     backgroundColor: '#0077cc',
                   },
                   boxShadow: '0 6px 8px rgba(0, 123, 255, 0.3)',
+                  mt: 2,
                 }}
               >
-                {isLoading ? 'Logging in...' : 'Login'}
+                {isLoading ? 'Processing...' : 'Reset Password'}
               </Button>
             </Stack>
           </Box>
@@ -221,24 +287,13 @@ const LoginForm = () => {
           <Typography
             sx={{ mt: 4, textAlign: 'center', fontSize: '15px', color: '#666' }}
           >
-            Don&apos;t have an account?{' '}
+            Remember your password?{' '}
             <Link
-              href='/signup'
+              href='/login-form'
               underline='hover'
               sx={{ fontWeight: 600, color: '#0c9cf5' }}
             >
-              Sign up here
-            </Link>
-          </Typography>
-          <Typography
-            sx={{ textAlign: 'center', fontSize: '15px', color: '#666' }}
-          >
-            <Link
-              href='/forgot-password'
-              underline='hover'
-              sx={{ fontWeight: 600, color: '#0c9cf5' }}
-            >
-              Forgot password?
+              Login here
             </Link>
           </Typography>
         </Box>
@@ -263,4 +318,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default ForgotPassword;
