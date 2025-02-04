@@ -12,6 +12,10 @@ function Index() {
     navigate("/client/posted-project");
   };
 
+  const handleProposalClick = () => {
+    navigate("/client/view-proposal");
+  }
+
 
   return (
     <div className={styles.container}>
@@ -39,6 +43,12 @@ function Index() {
           <h3> View Posted Projects</h3>
           <p>Monitor your projects effortlessly with real-time updates on milestones, deadlines, and deliverables.</p>
           <button className={styles.button} onClick={handlePostedProjectClick}>View Projects</button>
+        </div>
+
+        <div className={styles.card}>
+          <h3>Check Project Proposal</h3>
+          <p>Monitor your projects effortlessly with real-time updates on milestones</p>
+          <button className={styles.button} onClick={handleProposalClick}>View Proposal</button>
         </div>
       </div>
     </div>

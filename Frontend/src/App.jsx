@@ -36,6 +36,8 @@ import SaveProject from './Components/Projects/SaveProject';
 
 import PostedProjects from './Pages/Client/postedProjects';
 import ForgotPassword from './Pages/Forget-Password/forget-password';
+import ProposalForm from './Pages/Freelancer/ProposalForm';
+import ViewProposal from './Pages/Client/ViewProposal';
 //import LiveChat from './Components/LiveChat/LiveChat';
 
 const customTheme = createTheme({
@@ -92,6 +94,7 @@ function App() {
           <Route path='/project-description' element={<ProjectDescription />} />
           <Route path='/project-details' element={<ProjectDetails />} />
 
+          <Route path='/proposal-form' element={<ProposalForm/>} />
           {/* Protected Route Freelancer*/}
           <Route element={<ProtectedRoute allowedRole='freelancer' />}>
             <Route element={<Layout role={'freelancer'} />}>
@@ -99,6 +102,7 @@ function App() {
               <Route path='/project/all' element={<Projects />} />
               <Route path='/project' element={<ProjectList />} />
               <Route path='/project/:projectId' element={<ProjectView />} />
+              <Route path='/proposal-form/:projectId' element={<ProposalForm/>} />
               <Route
                 path='/freelancer/profile'
                 element={<FreelancerProfile />}
@@ -119,10 +123,8 @@ function App() {
             <Route element={<Layout role={'client'} />}>
               <Route path='/client' element={<Client />} />
               <Route path='/client/profile' element={<ClientProfile />} />
-              <Route
-                path='/client/posted-project'
-                element={<PostedProjects />}
-              />
+              <Route path='/client/posted-project'element={<PostedProjects />}/>
+              <Route path='/view-proposal' element={<ViewProposal/>} />
             </Route>
           </Route>
         </Routes>

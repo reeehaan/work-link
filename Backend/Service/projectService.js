@@ -1,5 +1,6 @@
 const Project = require('../Models/project');
 const Client = require('../Models/client');
+const Proposal = require('../Models/proposal');
 
 const createProject = async (req, res) => {
   // Get client record using user ID from JWT token
@@ -29,11 +30,13 @@ const getProjectsByClientId = async (req, res) => {
   const client = await Client.findOne({ userId: req.user._id });
 
   if (client) {
-    const projects = await Project.find({ clientId: client._id });
+    const projects = await Project.find({ clientId: client._id }).sort({createdAt: -1});
     res.status(201).send(projects);
   } else {
     res.status(404).send('There are not projects related to this client');
   }
+
+
 };
 
 const getAllProjects = async (req, res) => {
@@ -92,6 +95,9 @@ const deleteProjectByProjectId = async (req, res) => {
     res.status(500).send('Internal server error');
   }
 };
+
+
+
 
 module.exports = {
   createProject,

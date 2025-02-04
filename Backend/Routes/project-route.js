@@ -24,11 +24,15 @@ router.get('/recent', verifyToken, Project.getRecentProjects);
 //Get project by project ID
 router.get('/:projectId', Project.getProjectByProjectId);
 
+
+
 router.delete(
   '/:projectId',
   verifyToken,
   verifyClientRole,
   Project.deleteProjectByProjectId
 );
+
+
 
 module.exports = router;

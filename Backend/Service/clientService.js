@@ -11,7 +11,7 @@ const saveUserClient = async (userId) => {
 
 const updateClientProfile = async (req, res) => {
   try {
-    console.log('Updating Client Profile', 'userId');
+    console.log('Updating Client Profile');
     const { userId } = req.params;
 
     const validUser = await User.findById(userId);
@@ -93,7 +93,9 @@ const deleteProjectByProjectId = async (req, res) => {
     res.status(500).send('Internal server error');
   }
 };
+ 
 
+ 
 module.exports = {
   saveUserClient,
   updateClientProfile,

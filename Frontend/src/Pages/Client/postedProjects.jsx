@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './postedProject.module.css';
 import {
@@ -18,12 +19,12 @@ import {
   Chip,
   Paper,
   Stack,
-  Divider,
   IconButton,
 } from '@mui/material';
 import { Close as CloseIcon, Delete as DeleteIcon } from '@mui/icons-material';
 
 const PostedProjects = () => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editedProject, setEditedProject] = useState(null);
@@ -63,6 +64,7 @@ const PostedProjects = () => {
         },
       };
       const response = await axios.delete(apiUrl, config);
+      console.log(response);
       setEditedProject(null);
       fetchProjects();
     } catch (error) {
@@ -121,6 +123,10 @@ const PostedProjects = () => {
     }));
   };
 
+  const handleBellClick = () =>{
+    navigate('/view-proposal');
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Posted Projects</h2>
@@ -157,8 +163,10 @@ const PostedProjects = () => {
               </div>
             </div>
             <p className={styles.budget}>Budget: $ {project.budget}</p>
+            <button onClick={handleBellClick}><i className="fa-regular fa-bell"></i></button>
           </div>
         ))}
+       
       </div>
 
       {modalOpen && editedProject && (
