@@ -5,12 +5,17 @@ const Footer = () => {
     <Box
       component="footer"
       sx={{
+          // Make it fixed at the bottom
+        bottom: 0,         // Stick it to the bottom of the screen
+        left: 0,           // Align it to the left of the screen
+        width: '100%',     // Full width
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'start',
         p: 3,
         backgroundColor: '#f8f8f8',
         color: '#333',
+          
       }}
     >
       <Box sx={{ maxWidth: 250 }}>

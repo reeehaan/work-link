@@ -22,6 +22,8 @@ import {
   IconButton,
 } from '@mui/material';
 import { Close as CloseIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import { Notifications as BellIcon } from '@mui/icons-material';
+
 
 const PostedProjects = () => {
   const navigate = useNavigate();
@@ -123,8 +125,8 @@ const PostedProjects = () => {
     }));
   };
 
-  const handleBellClick = () =>{
-    navigate('/view-proposal');
+  const handleBellClick = (projectId) =>{
+    navigate(`/view-proposal/${projectId}`);
   }
 
   return (
@@ -163,7 +165,9 @@ const PostedProjects = () => {
               </div>
             </div>
             <p className={styles.budget}>Budget: $ {project.budget}</p>
-            <button onClick={handleBellClick}><i className="fa-regular fa-bell"></i></button>
+            <IconButton onClick={() => handleBellClick(project._id)} color="primary">
+                        <BellIcon />
+            </IconButton>
           </div>
         ))}
        

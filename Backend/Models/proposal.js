@@ -13,6 +13,11 @@ const proposalSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  status: {
+    type: String,
+    enum: ["pending", "accepted", "rejected"], 
+    default: "pending", 
+  },
   freelancerId: 
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -24,6 +29,7 @@ const proposalSchema = new mongoose.Schema({
     ref: "project",
     required: true,
   },
+  
 });
 
 const Proposal = mongoose.model("Proposal", proposalSchema);

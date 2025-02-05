@@ -21,10 +21,16 @@ const ProposalForm = ({ onClose }) => {
       const accessToken = localStorage.getItem("accessToken");
 
       await axios.post(apiUrl, { projectId, ...proposal }, {
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
+        headers: { 
+          "Content-Type": "application/json", 
+          Authorization: `Bearer ${accessToken}` },
       });
 
-      setProposal({ description: "", budget: "", duration: "" });
+      setProposal({ 
+        description: "", 
+        budget: "", 
+        duration: "" 
+      });
       setSuccessMessage("Proposal sent successfully!");
       setTimeout(() => onClose(), 2000); // Close after success
     } catch (error) {

@@ -5,7 +5,7 @@ import {
   Route,
   Outlet,
 } from 'react-router-dom';
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider, CssBaseline ,Box} from '@mui/material';
 import PropTypes from 'prop-types';
 
 import Navbar from './Components/Navbar/Navbar';
@@ -38,7 +38,10 @@ import PostedProjects from './Pages/Client/postedProjects';
 import ForgotPassword from './Pages/Forget-Password/forget-password';
 import ProposalForm from './Pages/Freelancer/ProposalForm';
 import ViewProposal from './Pages/Client/ViewProposal';
-//import LiveChat from './Components/LiveChat/LiveChat';
+import AllProposals from './Pages/Freelancer/AllProposals';
+import LiveChat from './Components/LiveChat/LiveChat';
+// import MilestoneForm from './Components/Milestone/MilestoneForm';
+// import MilestoneList from './Components/Milestone/MilestoneList';
 
 const customTheme = createTheme({
   palette: {
@@ -62,11 +65,23 @@ const customTheme = createTheme({
 
 const Layout = ({ role }) => {
   return (
-    <>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+      }}
+    >
       <Navbar userType={role} />
-      <Outlet />
+      <Box
+        sx={{
+          flexGrow: 1,  // This makes the Outlet take up remaining space
+        }}
+      >
+        <Outlet />
+      </Box>
       <Footer />
-    </>
+    </Box>
   );
 };
 
@@ -93,8 +108,11 @@ function App() {
           <Route path='/project-budget' element={<ProjectBudget />} />
           <Route path='/project-description' element={<ProjectDescription />} />
           <Route path='/project-details' element={<ProjectDetails />} />
+          {/* <Route path='/milestone-form' element={<MilestoneForm />} />
+          <Route path='/milestone-list' element={<MilestoneList />} /> */}
+          
 
-          <Route path='/proposal-form' element={<ProposalForm/>} />
+          
           {/* Protected Route Freelancer*/}
           <Route element={<ProtectedRoute allowedRole='freelancer' />}>
             <Route element={<Layout role={'freelancer'} />}>
@@ -103,28 +121,22 @@ function App() {
               <Route path='/project' element={<ProjectList />} />
               <Route path='/project/:projectId' element={<ProjectView />} />
               <Route path='/proposal-form/:projectId' element={<ProposalForm/>} />
-              <Route
-                path='/freelancer/profile'
-                element={<FreelancerProfile />}
-              />
-              <Route
-                path='/freelancer/save-project'
-                element={<SaveProject />}
-              />
+              <Route path='/freelancer/profile' element={<FreelancerProfile />}/>
+              <Route path='/freelancer/save-project' element={<SaveProject />}/>
+              <Route path='/freelancer/all-proposal' element={<AllProposals />}/>
+              <Route path='/live-chat' element={<LiveChat />} />
             </Route>
           </Route>
 
           {/* Protected Route Client*/}
           <Route element={<ProtectedRoute allowedRole='client' />}>
-            <Route
-              path='/post-project-layout'
-              element={<PostProjectLayout />}
-            />
+            <Route path='/post-project-layout'element={<PostProjectLayout />}/>
             <Route element={<Layout role={'client'} />}>
               <Route path='/client' element={<Client />} />
               <Route path='/client/profile' element={<ClientProfile />} />
               <Route path='/client/posted-project'element={<PostedProjects />}/>
-              <Route path='/view-proposal' element={<ViewProposal/>} />
+              <Route path='/view-proposal/:projectId' element={<ViewProposal/>} />
+              <Route path='/live-chat' element={<LiveChat />} />
             </Route>
           </Route>
         </Routes>

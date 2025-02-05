@@ -67,7 +67,7 @@ export default function Navbar({ userType }) {
             Saved Projects
           </MenuItem>
           <MenuItem
-            onClick={handleMenuClose(setAnchorElWork)}
+            onClick={() => handleProposalsClick()}
             href='/proposals'
           >
             Proposals
@@ -240,6 +240,14 @@ export default function Navbar({ userType }) {
     navigate('/freelancer');
     setAnchorElPostJob(null);
   };
+
+  const handleProposalsClick = () => {
+    navigate('/freelancer/all-proposal');
+    setAnchorElPostJob(null);
+  };
+
+  
+  
 
   //To display user's name in the navbar
   const [userProfile, setUserProfile] = useState({
