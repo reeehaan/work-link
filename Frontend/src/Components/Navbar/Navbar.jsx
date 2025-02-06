@@ -97,6 +97,12 @@ export default function Navbar({ userType }) {
           >
             Active Contracts
           </MenuItem>
+          <MenuItem
+            onClick={() => handleMilestoneClick()}
+            href='/activeContracts'
+          >
+            Milestone Manager
+          </MenuItem>
         </Menu>
       </div>
 
@@ -245,6 +251,11 @@ export default function Navbar({ userType }) {
     navigate('/freelancer/all-proposal');
     setAnchorElPostJob(null);
   };
+  const handleMilestoneClick = () => {
+    navigate('/milestone-manager');
+    setAnchorElPostJob(null);
+  };
+
 
   
   

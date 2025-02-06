@@ -13,6 +13,7 @@ const project = require("./Routes/project-route")
 const freelancer = require("./Routes/freelancer-route");
 const client = require("./Routes/client-route");
 const proposal = require("./Routes/proposal-route.js");
+const milestone = require("./Routes/milestone-route.js");
 
 
 //middleware
@@ -27,6 +28,7 @@ app.use(
  app.use("/api/freelancer", freelancer);
  app.use("/api/client", client);
  app.use("/api/proposal", proposal);
+ app.use("/api/milestone", milestone)
 
 
 const port = process.env.PORT;

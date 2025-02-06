@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Card, CardContent, Typography, Button, CircularProgress, Grid, Container, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 
 const ProposalsList = () => {
+  const navigate = useNavigate();
   const [proposals, setProposals] = useState({ accepted: [], pending: [], rejected: [] });
   const [loading, setLoading] = useState(true);
   const [deleteMessage, setDeleteMessage] = useState("");
@@ -20,7 +22,7 @@ const ProposalsList = () => {
       };
 
       const response = await axios.get(apiUrl, config);
-
+  
       const categorizedProposals = {
         accepted: response.data.filter((proposal) => proposal.status === "accepted"),
         pending: response.data.filter((proposal) => proposal.status === "pending"),
@@ -71,6 +73,12 @@ const ProposalsList = () => {
     setOpenDialog(false);
   };
 
+  const handleProposalClick = (proposal, status) => {
+    if (status === "accepted") {
+      navigate(`/milestone-manager/${proposal.projectId._id}`);
+    }
+  };
+
   if (loading) return <CircularProgress style={{ display: "block", margin: "auto" }} />;
 
   return (
@@ -88,8 +96,13 @@ const ProposalsList = () => {
                       p: 2,
                       boxShadow: 3,
                       transition: "transform 0.2s ease-in-out",
-                      "&:hover": { transform: "scale(1.05)", boxShadow: 6 },
+                      "&:hover": { 
+                        transform: "scale(1.05)", 
+                        boxShadow: 6,
+                        cursor: status === "accepted" ? "pointer" : "default" 
+                      },
                     }}
+                    onClick={() => handleProposalClick(proposal, status)}
                   >
                     <CardContent>
                       <Typography variant="h6" color="primary">
@@ -106,7 +119,10 @@ const ProposalsList = () => {
                           color="error"
                           size="small"
                           sx={{ mt: 2 }}
-                          onClick={() => handleDelete(proposal._id)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(proposal._id);
+                          }}
                         >
                           Delete
                         </Button>

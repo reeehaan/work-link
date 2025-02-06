@@ -38,9 +38,10 @@ import PostedProjects from './Pages/Client/postedProjects';
 import ForgotPassword from './Pages/Forget-Password/forget-password';
 import ProposalForm from './Pages/Freelancer/ProposalForm';
 import ViewProposal from './Pages/Client/ViewProposal';
-import AllProposals from './Pages/Freelancer/AllProposals';
+import ProposalsList from './Pages/Freelancer/ProposalsList';
 import LiveChat from './Components/LiveChat/LiveChat';
-// import MilestoneForm from './Components/Milestone/MilestoneForm';
+import MilestoneManager from './Components/Milestone/MilestoneManager';
+
 // import MilestoneList from './Components/Milestone/MilestoneList';
 
 const customTheme = createTheme({
@@ -108,8 +109,8 @@ function App() {
           <Route path='/project-budget' element={<ProjectBudget />} />
           <Route path='/project-description' element={<ProjectDescription />} />
           <Route path='/project-details' element={<ProjectDetails />} />
-          {/* <Route path='/milestone-form' element={<MilestoneForm />} />
-          <Route path='/milestone-list' element={<MilestoneList />} /> */}
+          
+          {/* <Route path='/milestone-list' element={<MilestoneList />} /> */}
           
 
           
@@ -123,8 +124,9 @@ function App() {
               <Route path='/proposal-form/:projectId' element={<ProposalForm/>} />
               <Route path='/freelancer/profile' element={<FreelancerProfile />}/>
               <Route path='/freelancer/save-project' element={<SaveProject />}/>
-              <Route path='/freelancer/all-proposal' element={<AllProposals />}/>
+              <Route path='/freelancer/all-proposal' element={<ProposalsList />}/>
               <Route path='/live-chat' element={<LiveChat />} />
+              <Route path='/milestone-manager/:projectId' element={<MilestoneManager />} />
             </Route>
           </Route>
 
@@ -137,6 +139,7 @@ function App() {
               <Route path='/client/posted-project'element={<PostedProjects />}/>
               <Route path='/view-proposal/:projectId' element={<ViewProposal/>} />
               <Route path='/live-chat' element={<LiveChat />} />
+              <Route path='/milestone-manager/:projectId' element={<MilestoneManager />} />
             </Route>
           </Route>
         </Routes>

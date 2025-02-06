@@ -3,6 +3,7 @@ const Proposal = require('../Models/proposal');
 const Project = require('../Models/project');
 const Client = require('../Models/client');
 const User = require ('../Models/user');
+const Milestone = require('../Models/milestone');
 
 const freelancerSubmitProposal = async (req, res) => {
     try {  
@@ -144,6 +145,7 @@ const acceptProposal = async (req, res) => {
     if (!proposal) {
       return res.status(404).json({ message: 'Proposal not found' });
     }
+    
 
     res.status(200).json({ message: 'Proposal accepted successfully', proposal });
   } catch (error) {
@@ -167,6 +169,9 @@ const rejectProposal = async (req, res) => {
     if (!proposal) {
       return res.status(404).json({ message: 'Proposal not found' });
     }
+    const projectId = proposal.projectId;
+
+    
 
     res.status(200).json({ message: 'Proposal rejected successfully', proposal });
   } catch (error) {
