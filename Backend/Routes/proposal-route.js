@@ -22,4 +22,6 @@ router.patch('/accept/:proposalId',verifyToken,verifyClientRole,Proposal.acceptP
 router.patch('/reject/:proposalId',verifyToken,verifyClientRole,Proposal.rejectProposal);
 
 
+
+
 module.exports = router;

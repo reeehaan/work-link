@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import { 
     Card, CardContent, Typography, Button, Grid, Box, 
     Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle 
 } from "@mui/material";
 
 const ViewProposal = () => {
+    const navigate = useNavigate();
     const { projectId } = useParams();
     const [proposals, setProposals] = useState([]);
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -44,14 +46,12 @@ const ViewProposal = () => {
                 },
             };
 
-            // Send PATCH request to update the proposal status
             const response = await axios.patch(apiUrl, {}, config);
             console.log(response);
             
-            setDialogMessage("Proposal has been accepted successfully!"); // Set success message
-            setDialogOpen(true); // Open the dialog
+            setDialogMessage("Proposal has been accepted successfully!");
+            setDialogOpen(true);
 
-            // Update the UI to reflect the change
             setProposals((prevProposals) =>
                 prevProposals.map((proposal) =>
                     proposal._id === proposalId ? { ...proposal, status: "accepted" } : proposal
@@ -76,14 +76,12 @@ const ViewProposal = () => {
                 },
             };
 
-            // Send PATCH request to update the proposal status
             const response = await axios.patch(apiUrl, {}, config);
             console.log(response);
             
-            setDialogMessage("Proposal has been rejected successfully!"); // Set success message
-            setDialogOpen(true); // Open the dialog
+            setDialogMessage("Proposal has been rejected successfully!");
+            setDialogOpen(true);
 
-            // Update the UI to reflect the change
             setProposals((prevProposals) =>
                 prevProposals.map((proposal) =>
                     proposal._id === proposalId ? { ...proposal, status: "rejected" } : proposal
@@ -97,6 +95,12 @@ const ViewProposal = () => {
         }
     };
 
+    const handleProposalClick = (proposal) => {
+        if (proposal.status === "accepted") {
+            navigate(`/milestone-manager-client/${proposal.projectId._id}`);
+        }
+    };
+
     return (
         <Box p={3}>
             <Typography variant="h5" gutterBottom>
@@ -105,7 +109,11 @@ const ViewProposal = () => {
             <Grid container spacing={3}>
                 {proposals.map((proposal) => (
                     <Grid item xs={12} sm={6} md={4} key={proposal._id}>
-                        <Card variant="outlined">
+                        <Card 
+                            variant="outlined" 
+                            onClick={() => handleProposalClick(proposal)} 
+                            style={{ cursor: proposal.status === "accepted" ? "pointer" : "default" }}
+                        >
                             <CardContent>
                                 <Typography variant="h6">
                                     You received a proposal from {proposal.freelancerId.userId.firstName} {proposal.freelancerId.userId.lastName}
@@ -123,18 +131,21 @@ const ViewProposal = () => {
                                     <Button 
                                         variant="contained" 
                                         color="primary" 
-                                        onClick={() => onAccept(proposal._id)}
-                                        disabled={proposal.status === "accepted"} // Disable if already accepted
+                                        onClick={(e) => {
+                                            e.stopPropagation(); // Prevent triggering the card click
+                                            onAccept(proposal._id);
+                                        }}
+                                        disabled={proposal.status === "accepted"}
                                     >
                                         {proposal.status === "accepted" ? "Accepted" : "Accept"}
                                     </Button>
-                                    {/* <Button variant="outlined" color="secondary">
-                                        Reject
-                                    </Button> */}
                                     <Button 
                                         variant="contained" 
-                                        color="red" 
-                                        onClick={() => onReject(proposal._id)}
+                                        color="secondary"
+                                        onClick={(e) => {
+                                            e.stopPropagation(); // Prevent triggering the card click
+                                            onReject(proposal._id);
+                                        }}
                                         disabled={proposal.status === "rejected"}
                                     >
                                         {proposal.status === "rejected" ? "Rejected" : "Reject"}
@@ -146,7 +157,6 @@ const ViewProposal = () => {
                 ))}
             </Grid>
 
-            {/* Dialog Box for Confirmation Message */}
             <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
                 <DialogTitle>Proposal Update</DialogTitle>
                 <DialogContent>

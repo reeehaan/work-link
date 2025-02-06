@@ -139,7 +139,7 @@ function App() {
               <Route path='/client/posted-project'element={<PostedProjects />}/>
               <Route path='/view-proposal/:projectId' element={<ViewProposal/>} />
               <Route path='/live-chat' element={<LiveChat />} />
-              <Route path='/milestone-manager/:projectId' element={<MilestoneManager />} />
+              <Route path='/milestone-manager-client/:projectId' element={<MilestoneManager />} />
             </Route>
           </Route>
         </Routes>

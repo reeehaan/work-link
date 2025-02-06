@@ -74,7 +74,7 @@ const updateMilestone = async (req, res) => {
     try {
         const { projectId, milestoneId } = req.params;
         const { title, description, dueDate, amount, status } = req.body;
-
+        
         // Check if the proposal has been accepted for the project
         const proposal = await Proposal.findOne({ projectId: projectId, status: 'accepted' });
 
@@ -84,7 +84,7 @@ const updateMilestone = async (req, res) => {
                 message: 'Proposal for this project has not been accepted yet.'
             });
         }
-
+        
         // Find the milestone by ID and project ID and update it
         const milestone = await Milestone.findOneAndUpdate(
             { _id: milestoneId, projectId }, 

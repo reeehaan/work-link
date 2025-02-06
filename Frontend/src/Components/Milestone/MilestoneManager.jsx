@@ -31,6 +31,7 @@ import { useParams } from "react-router-dom";
 const MilestoneManager = () => {
   const { projectId } = useParams();
   const [milestones, setMilestones] = useState([]);
+  const [projectTitle, setProjectTitle] = useState('');
   const [open, setOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -84,6 +85,18 @@ const MilestoneManager = () => {
     setCurrentMilestone({ ...currentMilestone, [e.target.name]: e.target.value });
   };
 
+  
+  const fetchProjectTitle = async () => {
+      const response = await axios.get(`http://localhost:3000/api/project/${projectId}`);
+      // Extract project title from the response
+      const title = response.data.title
+      setProjectTitle(title);
+  };
+
+  useEffect(() => {
+    fetchProjectTitle();
+  }, [projectId]);
+
   const handleSave = async () => {
     try {
       // Validate required fields
@@ -93,9 +106,9 @@ const MilestoneManager = () => {
         return;
       }
 
-      if (currentMilestone.id) {
+      if (currentMilestone._id) {
         // Update existing milestone logic
-        const apiUrl = `http://localhost:3000/api/milestone/update-milestone/${projectId}/${currentMilestone.id}`;
+        const apiUrl = `http://localhost:3000/api/milestone/update-milestone/${projectId}/${currentMilestone._id}`;
         const accessToken = localStorage.getItem("accessToken");
 
         const config = {
@@ -109,9 +122,7 @@ const MilestoneManager = () => {
         
         if (response.status === 200) {
           // Update local state
-          setMilestones((prev) =>
-            prev.map((m) => (m.id === currentMilestone.id ? currentMilestone : m))
-          );
+          fetchMilestones();
           showSuccessSnackbar("Milestone updated successfully!");
         }
       } else {
@@ -218,7 +229,7 @@ const MilestoneManager = () => {
       
       if (response.status === 200) {
         // Use the passed id to filter
-        setMilestones((prev) => prev.filter((m) => m.id !== id));
+        fetchMilestones();
         showSuccessSnackbar("Milestone deleted successfully!");
       }
     } catch (error) {
@@ -231,31 +242,9 @@ const MilestoneManager = () => {
     }
   };
 
-  // const handlePay = async (id) => {
-  //   try {
-  //     const apiUrl = `http://localhost:3000/api/milestone/pay-milestone/${id}`;
-  //     const accessToken = localStorage.getItem("accessToken");
-
-  //     const config = {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     };
-
-  //     const response = await axios.put(apiUrl, {}, config);
-      
-  //     if (response.status === 200) {
-  //       setMilestones((prev) =>
-  //         prev.map((m) => (m.id === id ? { ...m, status: "Paid" } : m))
-  //       );
-  //       showSuccessSnackbar("Milestone payment processed successfully!");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error paying milestone:", error);
-  //     showErrorSnackbar("Failed to process milestone payment. Please try again.");
-  //   }
-  // };
+  const handlePay = async () => {
+    
+  };
 
   useEffect(() => {
     fetchMilestones();
@@ -277,10 +266,10 @@ const MilestoneManager = () => {
           {snackbarMessage}
         </Alert>
       </Snackbar>
-
+      
       <Box sx={{ mb: 4 }}>
         <Typography variant="h4" gutterBottom>
-          {milestones.length > 0 ? milestones[0].projectId.title : "No Milestones"}
+        {projectTitle ? projectTitle : "Loading..."}
         </Typography>
         <Typography variant="h6" gutterBottom>
           Manage Your Project Milestones
@@ -320,7 +309,7 @@ const MilestoneManager = () => {
                           <IconButton color="primary" onClick={() => handleOpen(milestone)}>
                             <EditIcon />
                           </IconButton>
-                          <IconButton color="error" onClick={() => handleRemove(milestone.id)}>
+                          <IconButton color="error" onClick={() => handleRemove(milestone._id)}>
                             <DeleteIcon />
                           </IconButton>
                         </>

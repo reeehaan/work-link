@@ -181,11 +181,14 @@ const rejectProposal = async (req, res) => {
 };
 
 
+
+
   module.exports = {
     freelancerSubmitProposal,
     getAllProposalByProjectId,
     getAllProposalsByFreelancer,
     deleteProposal,
     acceptProposal,
-    rejectProposal
+    rejectProposal,
+    
   };

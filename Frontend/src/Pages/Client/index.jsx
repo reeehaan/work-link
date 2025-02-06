@@ -12,8 +12,8 @@ function Index() {
     navigate("/client/posted-project");
   };
 
-  // const handleProposalClick = () => {
-  //   navigate("/client/view-proposal");
+  // const handleMilestoneClick = () => {
+  //   navigate("/milestone-manager/:projectId");
   // }
 
 
